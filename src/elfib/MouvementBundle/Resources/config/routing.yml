@@ -1,0 +1,3 @@
+elfib_mouvement_homepage:
+    pattern:  /mouvement
+    defaults: { _controller: elfibMouvementBundle:Mouvement:index }

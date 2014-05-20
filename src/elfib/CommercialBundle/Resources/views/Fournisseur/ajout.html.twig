@@ -1,0 +1,164 @@
+{# src/elfib/CommercialBundle/Resources/views/Commercial/index.html.twig #}
+
+{% extends "elfibCommercialBundle::layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - {{ action }} un fournisseur
+{% endblock %}
+
+{% block body %}
+  <h3>{{ action }} un fournisseur</h3>
+  <hr>
+  <div id="fournisseurAjout" class="text-center">
+    
+    <!-- Code et nom -->
+    {{ form_start(form) }}
+    <div class="row">
+      <div class="col-md-6">
+        {% if form_errors(form.code) %}
+          <div class="form-group has-error has-feedback">
+            <label class="control-label" for="code">{{ form_errors(form.code) }}</label>
+            {{ form_widget(form.code, {'attr': {'class': 'form-control',
+              'placeholder': 'Code'}} ) }}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>
+        {% else %}
+          <div class="form-group">
+            <label class="control-label" for="code">Code</label>
+            {{ form_widget(form.code, {'attr': {'class': 'form-control',
+              'placeholder': 'Code'}} ) }}
+          </div>
+        {% endif %}
+      </div>
+      <div class="col-md-6">
+        {% if form_errors(form.nom) %}
+          <div class="form-group has-error has-feedback">
+            <label class="control-label" for="nom">{{ form_errors(form.nom) }}</label>
+            {{ form_widget(form.nom, {'attr': {'class': 'form-control',
+              'placeholder': 'Nom'}} ) }}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>
+        {% else %}
+          <div class="form-group">
+            <label class="control-label" for="nom">Nom</label>
+            {{ form_widget(form.nom, {'attr': {'class': 'form-control',
+              'placeholder': 'Nom'}} ) }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <br>
+
+    <!-- Adresse -->
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        {% if form_errors(form.adrRue) %}
+          <div class="form-group has-error has-feedback">
+            <label class="control-label" for="adrRue">{{ form_errors(form.adrRue) }}</label>
+            {{ form_widget(form.adrRue, {'attr': {'class': 'form-control',
+              'placeholder': 'Rue'}} ) }}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>
+        {% else %}
+          <div class="form-group">
+            <label class="control-label" for="adrRue">Rue</label>
+            {{ form_widget(form.adrRue, {'attr': {'class': 'form-control',
+              'placeholder': 'Rue'}} ) }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        {% if form_errors(form.adrCP) %}
+          <div class="form-group has-error has-feedback">
+            <label class="control-label" for="adrCP">{{ form_errors(form.adrCP) }}</label>
+            {{ form_widget(form.adrCP, {'attr': {'class': 'form-control',
+              'placeholder': 'Code Postal'}} ) }}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>
+        {% else %}
+          <div class="form-group">
+            <label class="control-label" for="adrCP">Code Postal</label>
+            {{ form_widget(form.adrCP, {'attr': {'class': 'form-control',
+              'placeholder': 'Code Postal'}} ) }}
+          </div>
+        {% endif %}
+      </div>
+      <div class="col-md-6">
+        {% if form_errors(form.adrVille) %}
+          <div class="form-group has-error has-feedback">
+            <label class="control-label" for="adrVille">{{ form_errors(form.adrVille) }}</label>
+            {{ form_widget(form.adrVille, {'attr': {'class': 'form-control',
+              'placeholder': 'Ville'}} ) }}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>
+        {% else %}
+          <div class="form-group">
+            <label class="control-label" for="adrVille">Ville</label>
+            {{ form_widget(form.adrVille, {'attr': {'class': 'form-control',
+              'placeholder': 'Ville'}} ) }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <br>
+
+    <!-- Fax telephone email -->
+    <div class="row">
+      <div class="col-md-4">
+        {% if form_errors(form.fax) %}
+          <div class="form-group has-error has-feedback">
+            <label class="control-label" for="fax">{{ form_errors(form.fax) }}</label>
+            {{ form_widget(form.fax, {'attr': {'class': 'form-control',
+              'placeholder': 'Fax'}} ) }}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>
+        {% else %}
+          <div class="form-group">
+            <label class="control-label" for="fax">Fax</label>
+            {{ form_widget(form.fax, {'attr': {'class': 'form-control',
+              'placeholder': 'Fax'}} ) }}
+          </div>
+        {% endif %}
+      </div>
+      <div class="col-md-4">
+        {% if form_errors(form.tel) %}
+          <div class="form-group has-error has-feedback">
+            <label class="control-label" for="tel">{{ form_errors(form.tel) }}</label>
+            {{ form_widget(form.tel, {'attr': {'class': 'form-control',
+              'placeholder': 'Téléphone'}} ) }}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>
+        {% else %}
+          <div class="form-group">
+            <label class="control-label" for="tel">Téléphone</label>
+            {{ form_widget(form.tel, {'attr': {'class': 'form-control',
+              'placeholder': 'Téléphone'}} ) }}
+          </div>
+        {% endif %}
+      </div>
+      <div class="col-md-4">
+        {% if form_errors(form.email) %}
+          <div class="form-group has-error has-feedback">
+            <label class="control-label" for="email">{{ form_errors(form.email) }}</label>
+            {{ form_widget(form.email, {'attr': {'class': 'form-control',
+              'placeholder': 'Email'}} ) }}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>
+        {% else %}
+          <div class="form-group">
+            <label class="control-label" for="email">Email</label>
+            {{ form_widget(form.email, {'attr': {'class': 'form-control',
+              'placeholder': 'Email'}} ) }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    {{ form_rest(form)}}
+    <br>
+    <button class="btn btn-success" type="submit">Enregistrer</button>
+  </div>
+{% endblock %}

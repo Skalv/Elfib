@@ -1,0 +1,41 @@
+<div class="modal fade" id="magasinModal" tabindex="-1" role="dialog" aria-labelledby="magasinModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Ajout d'un magasin</h4>
+      </div>
+      <div class="modal-body">
+        <div id="fournisseurAjout" class="text-center">
+          {{ form_start(magasinForm) }}
+          <div class="row">
+            <div class="col-md-12">
+              {% if form_errors(magasinForm.libelle) %}
+                <div class="form-group has-error has-feedback">
+                  <label class="control-label" for="code">{{ form_errors(magasinForm.libelle) }}</label>
+                  {{ form_widget(magasinForm.libelle, {'attr': {'class': 'form-control',
+                    'placeholder': 'Libelle'}} ) }}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                </div>
+              {% else %}
+                <div class="form-group">
+                  <label class="control-label" for="code">Libelle</label>
+                  {{ form_widget(magasinForm.libelle, {'attr': {'class': 'form-control',
+                    'placeholder': 'Libelle'}} ) }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        <button type="submit" class="btn btn-success">Sauvegarder</button>
+        {{ form_end(magasinForm)}}
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+  

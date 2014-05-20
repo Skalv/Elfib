@@ -1,0 +1,169 @@
+<?php
+
+namespace elfib\StockBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Emplacements
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="elfib\StockBundle\Entity\EmplacementsRepository")
+ */
+class Emplacements
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="libelle", type="string", length=40)
+     * @Assert\NotBlank()
+     */
+    private $libelle;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="capacite", type="integer")
+     * @Assert\NotBlank()
+     */
+    private $capacite;
+
+    /**
+     * @var string
+     *
+     * @ORM\ManyToOne(targetEntity="elfib\StockBundle\Entity\Magasins",
+     *   cascade={"persist"},
+     *   inversedBy="magasin")
+     * @Assert\NotBlank()
+     */
+    private $magasin;
+
+    /**
+     * @var string
+     *
+     * @ORM\ManyToOne(targetEntity="elfib\ArticleBundle\Entity\Nomenclatures",
+     *   cascade={"persist"},
+     *   inversedBy="nomenclature")
+     */
+    private $nomenclature;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="actif", type="boolean")
+     */
+    private $actif;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set libelle
+     *
+     * @param string $libelle
+     * @return Emplacements
+     */
+    public function setLibelle($libelle)
+    {
+        $this->libelle = $libelle;
+    
+        return $this;
+    }
+
+    /**
+     * Get libelle
+     *
+     * @return string 
+     */
+    public function getLibelle()
+    {
+        return $this->libelle;
+    }
+
+    /**
+     * Set capacite
+     *
+     * @param integer $capacite
+     * @return Emplacements
+     */
+    public function setCapacite($capacite)
+    {
+        $this->capacite = $capacite;
+    
+        return $this;
+    }
+
+    /**
+     * Get capacite
+     *
+     * @return integer 
+     */
+    public function getCapacite()
+    {
+        return $this->capacite;
+    }
+
+    /**
+     * Set magasin
+     *
+     * @param \elfib\StockBundle\Entity\Magasins $magasin
+     * @return Emplacements
+     */
+    public function setMagasin(\elfib\StockBundle\Entity\Magasins $magasin = null)
+    {
+        $this->magasin = $magasin;
+    
+        return $this;
+    }
+
+    /**
+     * Get magasin
+     *
+     * @return \elfib\StockBundle\Entity\Magasins 
+     */
+    public function getMagasin()
+    {
+        return $this->magasin;
+    }
+
+    /**
+     * Set nomenclature
+     *
+     * @param \elfib\ArticleBundle\Entity\Nomenclatures $nomenclature
+     * @return Emplacements
+     */
+    public function setNomenclature(\elfib\ArticleBundle\Entity\Nomenclatures $nomenclature = null)
+    {
+        $this->nomenclature = $nomenclature;
+    
+        return $this;
+    }
+
+    /**
+     * Get nomenclature
+     *
+     * @return \elfib\ArticleBundle\Entity\Nomenclatures 
+     */
+    public function getNomenclature()
+    {
+        return $this->nomenclature;
+    }
+}

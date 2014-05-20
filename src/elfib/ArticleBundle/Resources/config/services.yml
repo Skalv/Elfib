@@ -1,0 +1,7 @@
+parameters:
+#    elfib_article.example.class: elfib\ArticleBundle\Example
+
+services:
+#    elfib_article.example:
+#        class: %elfib_article.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

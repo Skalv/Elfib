@@ -1,0 +1,77 @@
+{# src/elfib/elfibStockBundle/Resources/views/Stock/modifier.html.twig #}
+
+{% extends "elfibStockBundle::layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - modifier un emplacement
+{% endblock %}
+
+{% block body %}
+  <h3>Modifier un emplacement</h3>
+  <hr>
+<div id="fournisseurAjout" class="text-center">
+  {{ form_start(form) }}
+
+  <div class="row">
+            <div class="col-md-6">
+              {% if form_errors(form.libelle) %}
+                <div class="form-group has-error has-feedback">
+                  <label class="control-label" for="code">{{ form_errors(form.libelle) }}</label>
+                  {{ form_widget(form.libelle, {'attr': {'class': 'form-control',
+                    'placeholder': 'Libelle', 'novalidate': true}} ) }}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                </div>
+              {% else %}
+                <div class="form-group">
+                  <label class="control-label" for="code">Libelle</label>
+                  {{ form_widget(form.libelle, {'attr': {'class': 'form-control',
+                    'placeholder': 'Libelle'}} ) }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              {% if form_errors(form.magasin) %}
+                <div class="form-group has-error has-feedback">
+                  <label class="control-label" for="code">{{ form_errors(form.magasin) }}</label>
+                  {{ form_widget(form.magasin, {'attr': {'class': 'form-control',
+                    'placeholder': 'Magasin'}} ) }}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                </div>  
+              {% else %}
+                <div class="form-group">
+                  <label class="control-label" for="code">Magasin</label>
+                  {{ form_widget(form.magasin, {'attr': {'class': 'form-control',
+                    'placeholder': 'Magasin'}} ) }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              {% if form_errors(form.capacite) %}
+                <div class="form-group has-error has-feedback">
+                  <label class="control-label" for="code">{{ form_errors(form.capacite) }}</label>
+                  {{ form_widget(form.capacite, {'attr': {'class': 'form-control',
+                    'placeholder': 'Capacite'}} ) }}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                </div>  
+              {% else %}
+                <div class="form-group">
+                  <label class="control-label" for="code">capacite</label>
+                  {{ form_widget(form.capacite, {'attr': {'class': 'form-control',
+                    'placeholder': 'Capacite'}} ) }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+</div>
+<button class="btn btn-success" type="submit">modifier</button>
+{{ form_end(form)}}
+
+{% endblock %}
+      

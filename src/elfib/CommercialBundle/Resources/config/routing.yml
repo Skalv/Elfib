@@ -1,0 +1,63 @@
+elfib_commercial_homepage:
+    pattern:  /
+    defaults: { _controller: elfibCommercialBundle:Commercial:index }
+
+#
+# Fournisseurs
+#
+
+elfib_commercial_fournisseur_index:
+  pattern:    /fournisseur
+  defaults:   { _controller: elfibCommercialBundle:Commercial:fournisseurIndex }
+
+elfib_commercial_fournisseur_ajout:
+  pattern:    /fournisseur/ajout
+  defaults:   { _controller: elfibCommercialBundle:Commercial:fournisseurAjout }
+
+elfib_commercial_fournisseur_modifier:
+  pattern:    /fournisseur/modifier/{id}
+  defaults:   { _controller: elfibCommercialBundle:Commercial:fournisseurModifier }
+  requirements:
+    id:       \d+
+
+elfib_commercial_fournisseur_supprimer:
+  pattern:    /fournisseur/supprimer/{id}
+  defaults:   { _controller: elfibCommercialBundle:Commercial:fournisseurSupprimer }
+  requirements:
+    id:       \d+
+
+elfib_commercial_fournisseur_activer:
+  pattern:    /fournisseur/activer/{id}
+  defaults:   { _controller: elfibCommercialBundle:Commercial:fournisseurActiver }
+  requirements:
+    id:       \d+
+
+#
+# Clients
+#
+
+elfib_commercial_client_index:
+  pattern:    /client
+  defaults:   { _controller: elfibCommercialBundle:Commercial:clientIndex }
+
+elfib_commercial_client_ajout:
+  pattern:    /client/ajout
+  defaults:   { _controller: elfibCommercialBundle:Commercial:clientAjout }
+
+elfib_commercial_client_modifier:
+  pattern:    /client/modifier/{id}
+  defaults:   { _controller: elfibCommercialBundle:Commercial:clientModifier }
+  requirements:
+    id:       \d+
+
+elfib_commercial_client_supprimer:
+  pattern:    /client/supprimer/{id}
+  defaults:   { _controller: elfibCommercialBundle:Commercial:clientSupprimer }
+  requirements:
+    id:       \d+
+
+elfib_commercial_client_activer:
+  pattern:    /client/activer/{id}
+  defaults:   { _controller: elfibCommercialBundle:Commercial:clientActiver }
+  requirements:
+    id:       \d+

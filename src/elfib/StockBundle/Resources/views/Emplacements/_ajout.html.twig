@@ -1,0 +1,81 @@
+<div class="modal fade " id="emplacementModal" tabindex="-1" role="dialog" aria-labelledby="emplacementModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Ajout d'un emplacement</h4>
+      </div>
+      <div class="modal-body">
+
+        <div id="emplacementAjout" class="text-center">
+          {{ form_start(emplacementForm) }}
+          <!-- libelle -->
+          <div class="row">
+            <div class="col-md-12">
+              {% if form_errors(emplacementForm.libelle) %}
+                <div class="form-group has-error has-feedback">
+                  <label class="control-label" for="code">{{ form_errors(emplacementForm.libelle) }}</label>
+                  {{ form_widget(emplacementForm.libelle, {'attr': {'class': 'form-control',
+                    'placeholder': 'Libelle', 'novalidate': true}} ) }}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                </div>
+              {% else %}
+                <div class="form-group">
+                  <label class="control-label" for="code">Libelle</label>
+                  {{ form_widget(emplacementForm.libelle, {'attr': {'class': 'form-control',
+                    'placeholder': 'Libelle'}} ) }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              {% if form_errors(emplacementForm.magasin) %}
+                <div class="form-group has-error has-feedback">
+                  <label class="control-label" for="code">{{ form_errors(emplacementForm.magasin) }}</label>
+                  {{ form_widget(emplacementForm.magasin, {'attr': {'class': 'form-control',
+                    'placeholder': 'Magasin'}} ) }}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                </div>  
+              {% else %}
+                <div class="form-group">
+                  <label class="control-label" for="code">Magasin</label>
+                  {{ form_widget(emplacementForm.magasin, {'attr': {'class': 'form-control',
+                    'placeholder': 'Magasin'}} ) }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              {% if form_errors(emplacementForm.capacite) %}
+                <div class="form-group has-error has-feedback">
+                  <label class="control-label" for="code">{{ form_errors(emplacementForm.capacite) }}</label>
+                  {{ form_widget(emplacementForm.capacite, {'attr': {'class': 'form-control',
+                    'placeholder': 'Capacite'}} ) }}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                </div>  
+              {% else %}
+                <div class="form-group">
+                  <label class="control-label" for="code">capacite</label>
+                  {{ form_widget(emplacementForm.capacite, {'attr': {'class': 'form-control',
+                    'placeholder': 'Capacite'}} ) }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        <button type="submit" class="btn btn-success">Sauvegarder</button>
+        {{ form_end(emplacementForm)}}
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+  

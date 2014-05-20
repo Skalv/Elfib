@@ -1,0 +1,247 @@
+{# src/elfib/CommercialBundle/Resources/views/Commercial/index.html.twig #}
+
+{% extends "elfibCommercialBundle::layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - {{ action }} un client
+{% endblock %}
+
+{% block body %}
+  <h3>{{ action }} un client</h3>
+  <hr>
+  <div id="fournisseurAjout" class="text-center">
+    
+    {{ form_start(form) }}
+    <!-- Nom et Activité -->
+    <div class="row">
+      <div class="col-md-6">
+        {% if form_errors(form.nom) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.nom) }}
+          </div>
+        {% endif %}
+        {{ form_widget(form.nom, {'attr': {'class': 'form-control', 
+          'placeholder': 'Nom'}} ) }}
+      </div>
+      <div class="col-md-6">
+        {% if form_errors(form.activite) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.activite) }}
+          </div>
+        {% endif %}
+        {{ form_widget(form.activite, {'attr': {'class': 'form-control', 
+          'placeholder': 'Activité'}} ) }}
+      </div>
+    </div>
+
+    <br>
+
+    <!-- Adresse Siege -->
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h4>Siège social</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        {% if form_errors(form.sieRue) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.sieRue) }}
+          </div>
+        {% endif %}
+        {{ form_widget(form.sieRue, {'attr': {'class': 'form-control',
+          'placeholder': 'Rue'}} ) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        {% if form_errors(form.sieCP) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.sieCP) }}
+          </div>
+        {% endif %}
+        {{ form_widget(form.sieCP, {'attr': {'class': 'form-control',
+          'placeholder': 'Code postal'}} ) }}
+      </div>
+      <div class="col-md-6">
+        {% if form_errors(form.sieVille) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.sieVille) }}
+          </div>
+        {% endif %}
+        {{ form_widget(form.sieVille, {'attr': {'class': 'form-control',
+          'placeholder': 'Ville'}} ) }}
+      </div>
+    </div>
+
+    <br>
+
+    <!-- Adresse Livraison -->
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h4>Livraison</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        {% if form_errors(form.livRue) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.livRue) }}
+          </div>
+        {% endif %}
+        {{ form_widget(form.livRue, {'attr': {'class': 'form-control',
+          'placeholder': 'Rue'}} ) }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        {% if form_errors(form.livCP) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.livCP) }}
+          </div>
+        {% endif %}
+        {{ form_widget(form.livCP, {'attr': {'class': 'form-control',
+          'placeholder': 'Code postal'}} ) }}
+      </div>
+      <div class="col-md-6">
+        {% if form_errors(form.livVille) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.livVille) }}
+          </div>
+        {% endif %}
+        {{ form_widget(form.livVille, {'attr': {'class': 'form-control',
+          'placeholder': 'Ville'}} ) }}
+      </div>
+    </div>
+
+    <br>
+
+    <!-- Adresse facturation -->
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h4>Facturation</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        {% if form_errors(form.facRue) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.facRue) }}
+          </div>
+        {% endif %}
+        {{ form_widget(form.facRue, {'attr': {'class': 'form-control',
+          'placeholder': 'Rue'}} ) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        {% if form_errors(form.facCP) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.facCP) }}
+          </div>
+        {% endif %}
+        {{ form_widget(form.facCP, {'attr': {'class': 'form-control',
+          'placeholder': 'Code postal'}} ) }}
+      </div>
+      <div class="col-md-6">
+        {% if form_errors(form.facVille) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.facVille) }}
+          </div>
+        {% endif %}
+        {{ form_widget(form.facVille, {'attr': {'class': 'form-control',
+          'placeholder': 'Ville'}} ) }}
+      </div>
+    </div>
+  
+    <br>
+    
+    <!-- rcs et siret -->
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h4>Informations administratives</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        {% if form_errors(form.rcs) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.rcs) }}
+          </div>
+        {% endif %}
+        {{ form_widget(form.rcs, {'attr': {'class': 'form-control',
+          'placeholder': 'RSC'}} ) }}
+      </div>
+      <div class="col-md-6">
+        {% if form_errors(form.siret) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.siret) }}
+          </div>
+        {% endif %}
+        {{ form_widget(form.siret, {'attr': {'class': 'form-control',
+          'placeholder': 'Siret'}} ) }}
+      </div>
+    </div>
+
+    <br>
+
+    <!-- forme Juridique et CA -->
+    <div class="row">
+      <div class="col-md-6">
+        {% if form_errors(form.formeJuridique) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.formeJuridique) }}
+          </div>
+        {% endif %}
+        {{ form_widget(form.formeJuridique, {'attr': {'class': 'form-control',
+          'placeholder': 'Forme Juridique'}} ) }}
+      </div>
+      <div class="col-md-6">
+        {% if form_errors(form.ca) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.ca) }}
+          </div>
+        {% endif %}
+        {{ form_widget(form.ca, {'attr': {'class': 'form-control',
+          'placeholder': "Chiffre d'affaire"}} ) }}
+      </div>
+    </div>
+    
+    <br>
+
+    <!-- fax & standar & tel -->
+    <div class="row">
+      <div class="col-md-4">
+        {% if form_errors(form.fax) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.fax) }}
+          </div>
+        {% endif %}
+        {{ form_widget(form.fax, {'attr': {'class': 'form-control',
+          'placeholder': 'Fax'}} ) }}
+      </div>
+      <div class="col-md-4">
+        {% if form_errors(form.tel) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.tel) }}
+          </div>
+        {% endif %}
+        {{ form_widget(form.tel, {'attr': {'class': 'form-control',
+          'placeholder': 'Téléphone'}} ) }}
+      </div>
+      <div class="col-md-4">
+        {% if form_errors(form.stdTel) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.stdTel) }}
+          </div>
+        {% endif %}
+        {{ form_widget(form.stdTel, {'attr': {'class': 'form-control',
+          'placeholder': 'Standard'}} ) }}
+      </div>
+    </div>
+    {{ form_rest(form)}}
+    <br>
+    <button class="btn btn-success" type="submit">Enregistrer</button>
+  </div>
+{% endblock %}

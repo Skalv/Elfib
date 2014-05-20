@@ -1,0 +1,33 @@
+Entrer des BdC et BdL 
+
+
+BdL MP => Mouvement d'ajout de MP
+BdC PF => Mouvement d'ajout de PF, Mouvement de suppression de MP
+BdL PF => Mouvement de supression de PF
+
+Mouvement de supression => Test de seuil.
+
+Si test de seuil => Alert, BdC MP
+
+QR Codes.
+
+Utilisateurs
+
+DashBoard
+
+
+
+
+new mouvement (type, produit, depart, destination)
+
+1 nomenclature contient plusieurs mouvements
+1 mouvement appartient a 1 seul nomenclature.
+
+bdl MP (Exp = fourni / des = elfib) livraisonMP
+bdc PF (Exp = client / des = elfib)  commandePF
+bdl PF (Exp = elfib / des = client) livraisonPF
+bdc MP (Exp = elfib / dex = fourni) commandeMP
+
+
+execute mouvement :
+

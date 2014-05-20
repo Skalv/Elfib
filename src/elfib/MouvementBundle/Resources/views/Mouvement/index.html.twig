@@ -1,0 +1,123 @@
+{# src/elfib/ArticleBundle/Resources/views/Client/index.html.twig #}
+
+{% extends "elfibArticleBundle::layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Mouvements
+{% endblock %}
+
+{% block body %}
+<div id="NomenclatureIndex">
+  <h3>Gestion des Bons et mouvements</h3>
+  
+  <div class="clearfix"></div><hr>
+    
+  <button data-toggle="modal" data-target="#nomenclatureModal" class="btn btn-success">
+    Entrer un bon
+  </button>
+  
+  <div class="row">
+    <div class="container-fluid">
+      <div class="col-md-3">
+        <h6>Dernières livraisons de matière premèire
+        </h6>
+        <table class="table">
+          <tr>
+            <th>Expediteur</th>
+            <th>Article</th>
+            <th>Quantité</th>
+          </tr>
+          {% for livraisonMP in livraisonMPs %}
+            <tr>
+              <td>{{ livraisonMP.expediteur }}</td>
+              <td>{{ livraisonMP.nomenclature.libelle }}</td>
+              <td>{{ livraisonMP.quantite }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+
+      <div class="col-md-3">
+        <h6>Dernières Commandes produits Fini
+        </h6>
+        <table class="table">
+          <tr>
+            <th>Client</th>
+            <th>Article</th>
+            <th>Quantité</th>
+          </tr>
+          {% for commandePF in commandePFs %}
+            <tr>
+              <td>{{ commandePF.expediteur }}</td>
+              <td>{{ commandePF.nomenclature.libelle }}</td>
+              <td>{{ commandePF.quantite }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+
+      <div class="col-md-3">
+        <h6>Dernières livraison de produit fini
+        </h6>
+        <table class="table">
+          <tr>
+            <th>Client</th>
+            <th>Article</th>
+            <th>Quantité</th>
+          </tr>
+          {% for livraisonPF in livraisonPFs %}
+            <tr>
+              <td>{{ livraisonPF.destinataire }}</td>
+              <td>{{ livraisonPF.nomenclature.libelle }}</td>
+              <td>{{ livraisonPF.quantite }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+
+      <div class="col-md-3">
+        <h6>Dernières commandes de matière première
+        </h6>
+        <table class="table">
+          <tr>
+            <th>Fournisseur</th>
+            <th>Article</th>
+            <th>Quantité</th>
+          </tr>
+          {% for commandeMP in commandeMPs %}
+            <tr>
+              <td>{{ commandeMP.destinataire }}</td>
+              <td>{{ commandeMP.nomenclature.libelle }}</td>
+              <td>{{ commandeMP.quantite }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="modal fade" id="nomenclatureModal" tabindex="-1" role="dialog" aria-labelledby="nomenclatureModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+
+        <a href="{{ path('elfib_nomenclature_ajout', {'type' : 'produitFini'}) }}">
+          <button class="btn btn-primary btn-block">Produit Fini</button>
+        </a>
+        <br>
+        <a href="{{ path('elfib_nomenclature_ajout', {'type' : 'matierePremiere'}) }}">
+          <button class="btn btn-primary btn-block">Matière première</button>
+        </a>
+
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{% endblock %}

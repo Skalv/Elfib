@@ -1,0 +1,92 @@
+{# src/elfib/CommercialBundle/Resources/views/Commercial/index.html.twig #}
+
+{% extends "elfibCommercialBundle::layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Fournisseurs
+{% endblock %}
+
+{% block body %}
+  <div id="fournisseurIndex">
+    <h3>Liste des fournisseurs
+      <a href="{{ path('elfib_commercial_fournisseur_ajout') }}">
+        <span class="badge badge-success pull-right">Ajouter un fournisseur</span>
+      </a>
+    </h3>
+    <hr>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-search search-only">
+          <i class="search-icon glyphicon glyphicon-search"></i>
+          <input type="text" class="form-control search-query" placeholder="Code">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-search search-only">
+          <i class="search-icon glyphicon glyphicon-search"></i>
+          <input type="text" class="form-control search-query" placeholder="Nom">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-search search-only">
+          <i class="search-icon glyphicon glyphicon-search"></i>
+          <input type="text" class="form-control search-query" placeholder="Code Postal">
+        </div>
+      </div>
+      <button class="btn btn-primary col-md-3">Rechercher</button>
+    </div>
+    <div class="clearfix"></div><hr>
+    <div class="row">
+      <div class="container-fluid">
+        <div class="col-md-10 col-md-offset-1">
+          <table class="table">
+            <tr>
+              <th>Code</th>
+              <th>Nom</th>
+              <th>Adresse</th>
+              <th>Ville</th>
+              <th>Code Postal</th>
+              <th>Téléphone</th>
+              <th>Fax</th>
+              <th>Email</th>
+              <th>Actif</th>
+              <th>Action</th>
+            </tr>
+            {% for fournisseur in fournisseurs %}
+              <tr>
+                <td>{{ fournisseur.code }}</td>
+                <td>{{ fournisseur.nom }}</td>
+                <td>{{ fournisseur.adrRue }}</td>
+                <td>{{ fournisseur.adrCP }}</td>
+                <td>{{ fournisseur.adrVille }}</td>
+                <td>{{ fournisseur.tel }}</td>
+                <td>{{ fournisseur.fax }}</td>
+                <td>{{ fournisseur.email }}</td>
+                <td>{% if fournisseur.actif %}Oui{% else %} Non {% endif %}</td>
+                <td>
+                  <a href="{{ path('elfib_commercial_fournisseur_modifier',
+                                  {'id': fournisseur.id}) }}">
+                    <i class="edit-icon glyphicon glyphicon-edit"></i>
+                  </a>
+                  {% if fournisseur.actif %}
+                    <a href="{{ path('elfib_commercial_fournisseur_supprimer',
+                                    {'id': fournisseur.id}) }}"
+                        onclick="return confirm('Etes vous certain de vouloir supprimer {{ fournisseur.nom }} ?')">
+                      <i class="remove-sign-icon glyphicon glyphicon-remove-sign"></i>
+                    </a>
+                  {% else %}
+                    <a href="{{ path('elfib_commercial_fournisseur_activer',
+                                    {'id': fournisseur.id}) }}"
+                        onclick="return confirm('Etes vous certain de vouloir activer {{ fournisseur.nom }} ?')">
+                      <i class="ok-sign-icon glyphicon glyphicon-ok-sign"></i>
+                    </a>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

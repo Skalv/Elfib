@@ -1,0 +1,104 @@
+{# app/Resources/views/layout.html.twig #}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>{% block title %}Elfib{% endblock %}</title>
+
+    {% stylesheets 
+      'css/bootstrap.min.css'
+      'bootflat/css/bootflat.css'
+      'css/elfib.css'
+      '@elfibCommercialBundle/Resources/public/css/fournisseur.css'
+      filter='cssrewrite'
+    %}
+      <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+  </head>
+  <body>
+    <header id="header">
+        <div class="container-fluide">
+          <div class="navbar navbar-default" role="navigation">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="navbar-header">
+                <div class="navbar-brand">
+                  Elfib &middot; Gestionnaire de stock.
+                </div>
+              </div>
+              <div class="collapse navbar-collapse">
+                
+                <div class="navbar-text navbar-right">
+                  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {{ app.user.username }} - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                  {% else %}
+                    <button class="btn btn-warning navbar-btn navbar-right">Connexion</button>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </header><!-- /header -->
+
+  <div id="content" class="container-fluid">
+    <div id="menu" class="btn-group-vertical col-md-2">
+      <button class="btn btn-info"></button>
+      <a href="#">
+        <button class="btn btn-info">Accueil</button>
+      </a>
+      <a href="{{ path('elfib_commercial_fournisseur_index') }}">
+        <button class="btn btn-info">Fournisseurs</button>
+      </a>
+      <a href="{{ path('elfib_commercial_client_index') }}">
+        <button class="btn btn-info">Client</button>
+      </a>
+      <a href="{{ path('elfib_stock_homepage') }}">
+        <button class="btn btn-info">Stock</button>
+      </a>
+      <a href="{{ path('elfib_nomenclature_homepage') }}">
+        <button class="btn btn-info">Article</button>
+      </a>
+      <a href="{{ path('elfib_mouvement_homepage') }}">
+        <button class="btn btn-info">Mouvement</button>
+      </a>
+      <a href="#">
+        <button class="btn btn-info">Alerte</button>
+      </a>
+      <a href="#">
+        <button class="btn btn-info">Utilisateur</button>
+      </a>
+    </div>
+    
+    <div class="col-md-10">
+      {% for flashMessage in app.session.flashbag.get('info') %}
+          <div class="container-fluid">
+              <div class="alert alert-info">
+                  {{ flashMessage }}
+              </div>
+          </div>
+      {% endfor %}
+      {% for flashMessage in app.session.flashbag.get('error') %}
+          <div class="container-fluid">
+              <div class="alert alert-danger">
+                  {{ flashMessage }}
+              </div>
+          </div>
+      {% endfor %}
+      {% block body %}
+      {% endblock %}
+    </div>
+  </div>
+
+  {% javascripts 
+    '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'
+    'js/bootstrap.min.js'
+    'bootflat/js/icheck.min.js'
+    '@elfibStockBundle/Resources/public/js/stock.js'
+  %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+  {% endjavascripts %}
+
+  </body>
+</html>

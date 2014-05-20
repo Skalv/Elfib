@@ -1,0 +1,7 @@
+parameters:
+#    elfib_stock.example.class: elfib\StockBundle\Example
+
+services:
+#    elfib_stock.example:
+#        class: %elfib_stock.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

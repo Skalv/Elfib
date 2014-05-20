@@ -1,0 +1,117 @@
+{# src/elfib/elfibArticleBundle/Resources/views/Stock/ajout.html.twig #}
+
+{% extends "elfibArticleBundle::layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - ajouter une nomenclature
+{% endblock %}
+
+{% block body %}
+  <h3>Ajouter une nomenclature</h3>
+  <hr>
+<div id="fournisseurAjout" class="text-center">
+  {{ form_start(form) }}
+
+  <div class="row">
+            <div class="col-md-6">
+              {% if form_errors(form.libelle) %}
+                <div class="form-group has-error has-feedback">
+                  <label class="control-label" for="code">{{ form_errors(form.libelle) }}</label>
+                  {{ form_widget(form.libelle, {'attr': {'class': 'form-control',
+                    'placeholder': 'Libelle', 'novalidate': true}} ) }}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                </div>
+              {% else %}
+                <div class="form-group">
+                  <label class="control-label" for="code">Libelle</label>
+                  {{ form_widget(form.libelle, {'attr': {'class': 'form-control',
+                    'placeholder': 'Libelle'}} ) }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              {% if form_errors(form.prix) %}
+                <div class="form-group has-error has-feedback">
+                  <label class="control-label" for="code">{{ form_errors(form.prix) }}</label>
+                  {{ form_widget(form.prix, {'attr': {'class': 'form-control',
+                    'placeholder': 'prix'}} ) }}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                </div>  
+              {% else %}
+                <div class="form-group">
+                  <label class="control-label" for="code">Prix</label>
+                  {{ form_widget(form.prix, {'attr': {'class': 'form-control',
+                    'placeholder': 'Prix'}} ) }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              {% if form_errors(form.seuilMini) %}
+                <div class="form-group has-error has-feedback">
+                  <label class="control-label" for="code">{{ form_errors(form.seuilMini) }}</label>
+                  {{ form_widget(form.seuilMini, {'attr': {'class': 'form-control',
+                    'placeholder': 'Seuil Minimum'}} ) }}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                </div>  
+              {% else %}
+                <div class="form-group">
+                  <label class="control-label" for="code">Seuil Minimum</label>
+                  {{ form_widget(form.seuilMini, {'attr': {'class': 'form-control',
+                    'placeholder': 'Seuil Minimum'}} ) }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          {% if type == 'matierePremiere' %}
+
+            <div class="row">
+            <div class="col-md-6">
+              {% if form_errors(form.fournisseurs) %}
+                <div class="form-group has-error has-feedback">
+                  <label class="control-label" for="code">{{ form_errors(form.fournisseurs) }}</label>
+                  {{ form_widget(form.fournisseurs, {'attr': {'class': 'form-control',
+                    'placeholder': 'Fournisseur'}} ) }}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                </div>  
+              {% else %}
+                <div class="form-group">
+                  <label class="control-label" for="code">Fournisseur</label>
+                  {{ form_widget(form.fournisseurs, {'attr': {'class': 'form-control',
+                    'placeholder': 'Fournisseur'}} ) }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          {% else %}
+            
+            {% if form_errors(form.matierePremieres) %}
+                <div class="form-group has-error has-feedback">
+                  <label class="control-label" for="code">{{ form_errors(form.matierePremieres) }}</label>
+                  {{ form_widget(form.matierePremieres, {'attr': {'class': 'form-control',
+                    'placeholder': 'Matière première'}} ) }}
+                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                </div>  
+              {% else %}
+                <div class="form-group">
+                  <label class="control-label" for="code">Matière première</label>
+                  {{ form_widget(form.matierePremieres, {'attr': {'class': 'form-control',
+                    'placeholder': 'Matière première'}} ) }}
+                </div>
+              {% endif %}
+
+          {% endif %}
+
+</div>
+<button class="btn btn-success" type="submit">Ajouter</button>
+{{ form_end(form)}}
+
+{% endblock %}
+      

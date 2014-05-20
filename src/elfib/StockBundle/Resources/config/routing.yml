@@ -1,0 +1,54 @@
+elfib_stock_homepage:
+    pattern:  /stock
+    defaults: { _controller: elfibStockBundle:Stock:index }
+
+#
+# Magasins
+#
+elfib_magasin_ajout:
+  pattern:  /magasins/ajout
+  defaults: { _controller: elfibStockBundle:Magasin:ajout }
+
+elfib_magasin_modifier:
+  pattern:  /magasins/modifier/{id}
+  defaults: { _controller: elfibStockBundle:Magasin:modifier }
+  requirements:
+    id: \d+
+
+elfib_magasin_desactiver:
+  pattern:  /magasins/desactiver/{id}
+  defaults: { _controller: elfibStockBundle:Magasin:desactiver }
+  requirements:
+    id: \d+
+
+elfib_magasin_activer:
+  pattern:  /magasins/activer/{id}
+  defaults: { _controller: elfibStockBundle:Magasin:activer }
+  requirements:
+    id: \d+
+
+#
+# Emplacements
+#
+elfib_emplacement_ajout:
+  pattern:  /emplacement/ajout
+  defaults: { _controller: elfibStockBundle:Stock:emplacementAjout }
+
+elfib_emplacement_modifier:
+  pattern:  /emplacement/modifier/{id}
+  defaults: { _controller: elfibStockBundle:Stock:emplacementModifier }
+  requirements:
+    id: \d+
+
+elfib_emplacement_supprimer:
+  pattern:  /emplacement/supprimer/{id}
+  defaults: { _controller: elfibStockBundle:Stock:emplacementSupprimer }
+  requirements:
+    id: \d+
+
+#
+# Mouvements
+#
+elfib_mouvement_ajout:
+  pattern:  /mouvement/ajout
+  defaults: { _controller: elfibStockBundle:Stock:mouvementAjout }

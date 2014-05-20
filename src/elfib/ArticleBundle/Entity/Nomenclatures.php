@@ -1,0 +1,290 @@
+<?php
+
+namespace elfib\ArticleBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Nomenclatures
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="elfib\ArticleBundle\Entity\NomenclaturesRepository")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="inheritance", type="string")
+ * @ORM\DiscriminatorMap({"produitfini" = "ProduitFini", "matierepremiere" = "MatierePremiere"})
+ */
+class Nomenclatures
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="libelle", type="string", length=40)
+     * @Assert\NotBlank()
+     */
+    private $libelle;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCreation", type="datetime")
+     * @Assert\DateTime()
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="prix", type="integer")
+     * @Assert\NotBlank()
+     */
+    private $prix;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="seuilMini", type="integer")
+     * @Assert\NotBlank()
+     */
+    private $seuilMini;
+
+    /**
+     * @ORM\OneToMany(targetEntity="elfib\StockBundle\Entity\Emplacements", mappedBy="nomenclature")
+     */
+    private $emplacements;
+
+    /**
+     * @ORM\OneToMany(targetEntity="elfib\StockBundle\Entity\Emplacements", mappedBy="mouvements")
+     */
+    private $mouvements;
+
+    public function __construct()
+    {
+        $this->emplacements = new ArrayCollection();
+        $this->mouvements = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set libelle
+     *
+     * @param string $libelle
+     * @return Nomenclatures
+     */
+    public function setLibelle($libelle)
+    {
+        $this->libelle = $libelle;
+    
+        return $this;
+    }
+
+    /**
+     * Get libelle
+     *
+     * @return string 
+     */
+    public function getLibelle()
+    {
+        return $this->libelle;
+    }
+
+    /**
+     * Set dateEntre
+     *
+     * @param \DateTime $dateEntre
+     * @return Nomenclatures
+     */
+    public function setDateEntre($dateEntre)
+    {
+        $this->dateEntre = $dateEntre;
+    
+        return $this;
+    }
+
+    /**
+     * Get dateEntre
+     *
+     * @return \DateTime 
+     */
+    public function getDateEntre()
+    {
+        return $this->dateEntre;
+    }
+
+    /**
+     * Set dateSortie
+     *
+     * @param \DateTime $dateSortie
+     * @return Nomenclatures
+     */
+    public function setDateSortie($dateSortie)
+    {
+        $this->dateSortie = $dateSortie;
+    
+        return $this;
+    }
+
+    /**
+     * Get dateSortie
+     *
+     * @return \DateTime 
+     */
+    public function getDateSortie()
+    {
+        return $this->dateSortie;
+    }
+
+    /**
+     * Set dateCreation
+     *
+     * @param \DateTime $dateCreation
+     * @return Nomenclatures
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+    
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return \DateTime 
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
+    }
+
+    /**
+     * Set prix
+     *
+     * @param integer $prix
+     * @return Nomenclatures
+     */
+    public function setPrix($prix)
+    {
+        $this->prix = $prix;
+    
+        return $this;
+    }
+
+    /**
+     * Get prix
+     *
+     * @return integer 
+     */
+    public function getPrix()
+    {
+        return $this->prix;
+    }
+
+    /**
+     * Set seuilMini
+     *
+     * @param integer $seuilMini
+     * @return Nomenclatures
+     */
+    public function setSeuilMini($seuilMini)
+    {
+        $this->seuilMini = $seuilMini;
+    
+        return $this;
+    }
+
+    /**
+     * Get seuilMini
+     *
+     * @return integer 
+     */
+    public function getSeuilMini()
+    {
+        return $this->seuilMini;
+    }
+
+    /**
+     * Add emplacements
+     *
+     * @param \elfib\StockBundle\Entity\Emplacements $emplacements
+     * @return Nomenclatures
+     */
+    public function addEmplacement(\elfib\StockBundle\Entity\Emplacements $emplacements)
+    {
+        $this->emplacements[] = $emplacements;
+    
+        return $this;
+    }
+
+    /**
+     * Remove emplacements
+     *
+     * @param \elfib\StockBundle\Entity\Emplacements $emplacements
+     */
+    public function removeEmplacement(\elfib\StockBundle\Entity\Emplacements $emplacements)
+    {
+        $this->emplacements->removeElement($emplacements);
+    }
+
+    /**
+     * Get emplacements
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEmplacements()
+    {
+        return $this->emplacements;
+    }
+
+    /**
+     * Add mouvements
+     *
+     * @param \elfib\StockBundle\Entity\Emplacements $mouvements
+     * @return Nomenclatures
+     */
+    public function addMouvement(\elfib\StockBundle\Entity\Emplacements $mouvements)
+    {
+        $this->mouvements[] = $mouvements;
+    
+        return $this;
+    }
+
+    /**
+     * Remove mouvements
+     *
+     * @param \elfib\StockBundle\Entity\Emplacements $mouvements
+     */
+    public function removeMouvement(\elfib\StockBundle\Entity\Emplacements $mouvements)
+    {
+        $this->mouvements->removeElement($mouvements);
+    }
+
+    /**
+     * Get mouvements
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMouvements()
+    {
+        return $this->mouvements;
+    }
+}

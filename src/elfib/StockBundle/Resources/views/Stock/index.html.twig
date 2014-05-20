@@ -1,0 +1,108 @@
+{# src/elfib/CommercialBundle/Resources/views/Client/index.html.twig #}
+
+{% extends "elfibCommercialBundle::layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Client
+{% endblock %}
+
+{% block body %}
+  <div id="StockIndex">
+
+    <h3>Gestion des stocks</h3>
+    
+
+    <div class="clearfix"></div><hr>
+    
+    <div class="row">
+      <div class="container-fluid">
+        <div class="col-md-4">
+          <h5>Magasins actifs
+            <button data-toggle="modal" data-target="#magasinModal" class="btn btn-success btn-xs pull-right">
+              Ajouter un magasin
+            </button>
+          </h5>
+          <table class="table">
+            <tr>
+              <th>Libelle</th>
+              <th>Action</th>
+            </tr>
+            {% for magasin in magasins %}
+              <tr>
+                <td>{{ magasin.libelle }}</td>
+                <td>
+                  <a href="{{ path('elfib_magasin_modifier',
+                                  {'id': magasin.id}) }}">
+                    <i class="edit-icon glyphicon glyphicon-edit"></i>
+                  </a>
+                  {% if magasin.actif %}
+                    <a href="{{ path('elfib_magasin_desactiver',
+                                  {'id': magasin.id}) }}"
+                       onclick="return confirm('Etes vous certain de vouloir desactiver {{ magasin.libelle }} ?')">
+                      <i class="remove-sign-icon glyphicon glyphicon-remove-sign"></i>
+                    </a>
+                  {% else %}
+                    <a href="{{ path('elfib_commercial_client_activer',
+                                  {'id': magasin.id}) }}"
+                       onclick="return confirm('Etes vous certain de vouloir activer {{ magasin.libelle }} ?')">
+                      <i class="ok-sign-icon glyphicon glyphicon-ok-sign"></i>
+                    </a>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+        <div class="col-md-4">
+          <h5>Emplacements actifs.
+            <button data-toggle="modal" data-target="#emplacementModal" class="btn btn-success btn-xs pull-right">
+              Ajouter un emplacement
+            </button>
+          </h5>
+          <table class="table">
+            <tr>
+              <th>Libelle</th>
+              <th>Magasin</th>
+              <th>Capacité</th>
+              <th>Action</th>
+            </tr>
+            {% for emplacement in emplacements %}
+              <tr>
+                <td>{{ emplacement.libelle }}</td>
+                <td>{{ emplacement.magasin.libelle }}</td>
+                <td>{{ emplacement.capacite }}</td>
+                <td>
+                  <a href="{{ path('elfib_emplacement_modifier',
+                                  {'id': emplacement.id}) }}">
+                    <i class="edit-icon glyphicon glyphicon-edit"></i>
+                  </a>
+                  {% if emplacement.actif %}
+                    <a href="{{ path('elfib_emplacement_supprimer',
+                                  {'id': emplacement.id}) }}"
+                       onclick="return confirm('Etes vous certain de vouloir desactiver {{ emplacement.libelle }} ?')">
+                      <i class="remove-sign-icon glyphicon glyphicon-remove-sign"></i>
+                    </a>
+                  {% else %}
+                    <a href="{{ path('elfib_emplacement_activer',
+                                  {'id': emplacement.id}) }}"
+                       onclick="return confirm('Etes vous certain de vouloir activer {{ emplacement.libelle }} ?')">
+                      <i class="ok-sign-icon glyphicon glyphicon-ok-sign"></i>
+                    </a>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'elfibStockBundle:Magasins:_ajout.html.twig' with {
+      'magasinForm' : magasinForm,
+    }  
+  %}
+  {% include 'elfibStockBundle:Emplacements:_ajout.html.twig' with {
+      'emplacementForm' : emplacementForm,
+    }  
+  %}
+{% endblock %}

@@ -1,0 +1,112 @@
+{# src/elfib/ArticleBundle/Resources/views/Client/index.html.twig #}
+
+{% extends "elfibArticleBundle::layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Article
+{% endblock %}
+
+{% block body %}
+<div id="NomenclatureIndex">
+  <h3>Gestion des Articles et Nomenclatures</h3>
+  
+  <div class="clearfix"></div><hr>
+    
+  <button data-toggle="modal" data-target="#nomenclatureModal" class="btn btn-success">
+    Ajouter une Nomenclature
+  </button>
+  
+  <div class="row">
+    <div class="container-fluid">
+      <div class="col-md-6">
+        <h5>Matières première
+        </h5>
+        <table class="table">
+          <tr>
+            <th>Libelle</th>
+            <th>Date création</th>
+            <th>Prix</th>
+            <th>Seuil minimum</th>
+            <th>Action</th>
+          </tr>
+          {% for matierePremiere in matierePremieres %}
+            <tr>
+              <td>{{ matierePremiere.libelle }}</td>
+              <td>{{ matierePremiere.dateCreation|date("m/d/Y") }}</td>
+              <td>{{ matierePremiere.prix }}</td>
+              <td>{{ matierePremiere.seuilMini }}</td>
+              <td>
+                <a href="{{ path('elfib_nomenclature_modifier',
+                                {'id': matierePremiere.id}) }}">
+                  <i class="edit-icon glyphicon glyphicon-edit"></i>
+                </a>
+                <a href="{{ path('elfib_nomenclature_desactiver',
+                              {'id': matierePremiere.id}) }}"
+                   onclick="return confirm('Etes vous certain de vouloir desactiver {{ matierePremiere.libelle }} ?')">
+                  <i class="remove-sign-icon glyphicon glyphicon-remove-sign"></i>
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    
+      <div class="col-md-6">
+        <h5>Produits fini
+        </h5>
+        <table class="table">
+          <tr>
+            <th>Libelle</th>
+            <th>Date création</th>
+            <th>Prix</th>
+            <th>Seuil minimum</th>
+            <th>Action</th>
+          </tr>
+          {% for produitFini in produitFinit %}
+            <tr>
+              <td>{{ produitFini.libelle }}</td>
+              <td>{{ produitFini.dateCreation|date("m/d/Y") }}</td>
+              <td>{{ produitFini.prix }}</td>
+              <td>{{ produitFini.seuilMini }}</td>
+              <td>
+                <a href="{{ path('elfib_nomenclature_modifier',
+                                {'id': produitFini.id}) }}">
+                  <i class="edit-icon glyphicon glyphicon-edit"></i>
+                </a>
+                <a href="{{ path('elfib_nomenclature_desactiver',
+                              {'id': produitFini.id}) }}"
+                   onclick="return confirm('Etes vous certain de vouloir desactiver {{ produitFini.libelle }} ?')">
+                  <i class="remove-sign-icon glyphicon glyphicon-remove-sign"></i>
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="nomenclatureModal" tabindex="-1" role="dialog" aria-labelledby="nomenclatureModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+
+        <a href="{{ path('elfib_nomenclature_ajout', {'type' : 'produitFini'}) }}">
+          <button class="btn btn-primary btn-block">Produit Fini</button>
+        </a>
+        <br>
+        <a href="{{ path('elfib_nomenclature_ajout', {'type' : 'matierePremiere'}) }}">
+          <button class="btn btn-primary btn-block">Matière première</button>
+        </a>
+
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{% endblock %}

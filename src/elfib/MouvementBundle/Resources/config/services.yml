@@ -1,0 +1,7 @@
+parameters:
+#    elfib_mouvement.example.class: elfib\MouvementBundle\Example
+
+services:
+#    elfib_mouvement.example:
+#        class: %elfib_mouvement.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

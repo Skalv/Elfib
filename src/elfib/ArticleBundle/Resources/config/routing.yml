@@ -1,0 +1,30 @@
+elfib_nomenclature_homepage:
+    pattern:  /article
+    defaults: { _controller: elfibArticleBundle:Nomenclature:index }
+
+
+#
+# Nomenclatures
+#
+elfib_nomenclature_ajout:
+    pattern:  /article/ajout/{type}
+    defaults: { _controller: elfibArticleBundle:Nomenclature:ajout }
+
+elfib_nomenclature_modifier:
+    pattern:  /article/modifier/{id}
+    defaults: { _controller: elfibArticleBundle:Nomenclature:modifier }
+    requirements:
+      id: \d+
+
+elfib_nomenclature_desactiver:
+    pattern:  /article/desactiver/{id}
+    defaults: { _controller: elfibArticleBundle:Nomenclature:desactiver }
+    requirements:
+      id: \d+
+
+elfib_nomenclature_activer:
+    pattern:  /article/activer/{id}
+    defaults: { _controller: elfibArticleBundle:Nomenclature:activer }
+    requirements:
+      id: \d+
+

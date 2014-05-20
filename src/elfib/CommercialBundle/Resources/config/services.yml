@@ -1,0 +1,7 @@
+parameters:
+#    elfib_commercial.example.class: elfib\CommercialBundle\Example
+
+services:
+#    elfib_commercial.example:
+#        class: %elfib_commercial.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
