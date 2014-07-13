@@ -60,8 +60,8 @@ class StockController extends Controller
         }
       }
 
-      return $this->render('elfibCommercialBundle:Emplacements:_ajout.html.twig', array(
-        "form" => $form->createView(),
+      return $this->render('elfibStockBundle:Emplacements:_ajout.html.twig', array(
+        "emplacementForm" => $form->createView(),
         "action" => "Ajouter"
       ));
     }

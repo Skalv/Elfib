@@ -27,7 +27,7 @@ class Fournisseurs
      * @var string
      *
      * @ORM\Column(name="code", type="string", length=6)
-     * @Assert\length(
+     * @Assert\Length(
      *          min = "6",
      *          max = "6",
      *          exactMessage = "Le code client doit faire {{ limit }} caractères."
@@ -47,7 +47,7 @@ class Fournisseurs
      * @var string
      *
      * @ORM\Column(name="adrCP", type="string", length=5)
-     * @Assert\length(
+     * @Assert\Length(
      *          min = "5",
      *          max = "5",
      *          exactMessage = "Le code postal doit faire {{ limit }} caractères."
@@ -75,7 +75,7 @@ class Fournisseurs
      * @var string
      *
      * @ORM\Column(name="fax", type="string", length=10)
-     * @Assert\length(
+     * @Assert\Length(
      *          min = "10",
      *          max = "10",
      *          exactMessage = "Le numéro de fax doit faire {{ limit }} caractères."
@@ -87,7 +87,7 @@ class Fournisseurs
      * @var string
      *
      * @ORM\Column(name="tel", type="string", length=10)
-     * @Assert\length(
+     * @Assert\Length(
      *          min = "10",
      *          max = "10",
      *          exactMessage = "Le numéro de téléphone doit faire {{ limit }} caractères."
@@ -374,38 +374,5 @@ class Fournisseurs
     public function getMatierePremieres()
     {
         return $this->matierePremieres;
-    }
-
-    /**
-     * Add bons
-     *
-     * @param \elfib\MouvementBundle\Entity\Bon $bons
-     * @return Fournisseurs
-     */
-    public function addBon(\elfib\MouvementBundle\Entity\Bon $bons)
-    {
-        $this->bons[] = $bons;
-    
-        return $this;
-    }
-
-    /**
-     * Remove bons
-     *
-     * @param \elfib\MouvementBundle\Entity\Bon $bons
-     */
-    public function removeBon(\elfib\MouvementBundle\Entity\Bon $bons)
-    {
-        $this->bons->removeElement($bons);
-    }
-
-    /**
-     * Get bons
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getBons()
-    {
-        return $this->bons;
     }
 }

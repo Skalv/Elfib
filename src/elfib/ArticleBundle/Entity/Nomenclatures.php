@@ -59,14 +59,11 @@ class Nomenclatures
     private $seuilMini;
 
     /**
-     * @ORM\OneToMany(targetEntity="elfib\StockBundle\Entity\Emplacements", mappedBy="nomenclature")
+     * @var text
+     *
+     * @ORM\Column(name="qrcode", type="text")
      */
-    private $emplacements;
-
-    /**
-     * @ORM\OneToMany(targetEntity="elfib\StockBundle\Entity\Emplacements", mappedBy="mouvements")
-     */
-    private $mouvements;
+    private $qrcode;
 
     public function __construct()
     {
@@ -286,5 +283,65 @@ class Nomenclatures
     public function getMouvements()
     {
         return $this->mouvements;
+    }
+
+    /**
+     * Get web path
+     *
+     * @return $path string
+     */
+    public function getQRWebPath()
+    {
+        return "/img/qrcodes";
+    }
+
+    /**
+     * Get absolute Path.
+     *
+     * @return $path
+     */
+    public function getQRAbsolutePath()
+    {
+        return "/var/www/project/web".$this->getQRWebPath();
+    }
+
+    /**
+     * Generate QRCode.
+     *
+     * @return $name string Name of png created.
+     */
+    public function GenerateQRCode()
+    {
+        $viewPath = $this->getQRWebPath();
+        $absolutePath = $this->getQRAbsolutePath();
+        $name = "qr-".$this->getLibelle().'.png';
+        $dr = DIRECTORY_SEPARATOR;
+
+        \PHPQRCode\QRcode::png($viewPath, $absolutePath.$dr.$name, 'L', 4, 2);
+
+        $this->qrcode = $this->getQRWebPath().DIRECTORY_SEPARATOR.$name;
+    }
+
+    /**
+     * get Qrcode.
+     *
+     * @return $path Webpath of QRCode
+     */
+    public function getQRCode()
+    {
+        return $this->qrcode;
+    }
+
+    /**
+     * Set qrcode
+     *
+     * @param string $qrcode
+     * @return Nomenclatures
+     */
+    public function setQrcode($qrcode)
+    {
+        $this->qrcode = $qrcode;
+    
+        return $this;
     }
 }

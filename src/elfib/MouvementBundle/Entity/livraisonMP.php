@@ -25,7 +25,6 @@ class livraisonMP extends Mouvement
     /**
      * @var string
      *
-     * @ORM\Column(name="expediteur", type="string", length=255)
      * @ORM\OneToOne(targetEntity="elfib\CommercialBundle\Entity\Fournisseurs", cascade={"persist"})
      */
     private $expediteur;
@@ -36,6 +35,13 @@ class livraisonMP extends Mouvement
      * @ORM\Column(name="destinataire", type="string", length=255)
      */
     private $destinataire;
+
+    /**
+     * @var string
+     *
+     * @ORM\ManyToOne(targetEntity="elfib\ArticleBundle\Entity\MatierePremiere", cascade={"persist"})
+     */
+    private $matierePremiere;
 
     public function __construct()
     {
@@ -109,5 +115,15 @@ class livraisonMP extends Mouvement
     public function getTypeMouvement()
     {
         return $this->typeMouvement;
+    }
+
+    public function setMatierePremiere($matierePremiere)
+    {
+        $this->matierePremiere = $matierePremiere;
+    }
+
+    public function getMatierePremiere()
+    {
+        return $this->matierePremiere;
     }
 }

@@ -15,9 +15,9 @@ class MatierePremiereType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('libelle')
-            ->add('prix')
-            ->add('seuilMini')
+            ->add('libelle', 'text')
+            ->add('prix', 'number')
+            ->add('seuilMini', 'number')
             ->add('fournisseurs', 'entity', array(
                 'class'    => 'elfibCommercialBundle:Fournisseurs',
                 'property' => 'nom',

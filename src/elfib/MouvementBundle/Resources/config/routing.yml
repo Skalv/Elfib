@@ -1,3 +1,29 @@
 elfib_mouvement_homepage:
     pattern:  /mouvement
     defaults: { _controller: elfibMouvementBundle:Mouvement:index }
+
+# Commande MP
+elfib_mouvement_addMP:
+  pattern:    /mouvement/add_mp
+  defaults:   { _controller: elfibMouvementBundle:Mouvement:addMP }
+
+# Commande de PF, lance la fabrication.
+elfib_mouvement_addPF:
+  pattern:    /mouvement/commandePF
+  defaults:   { _controller: elfibMouvementBundle:Mouvement:commandePF }
+
+# Sortie de MP avant fabrication
+elfib_mouvement_dropMP:
+  pattern:    /mouvement/drop_mp
+  defaults:   { _controller: elfibMouvementBundle:Mouvement:dropMP }
+
+# Bon de livraison de PF
+elfib_mouvement_dropPF:
+  pattern:    /mouvement/drop_pf
+  defaults:   { _controller: elfibMouvementBundle:Mouvement:dropPF }
+
+elfib_fabrication:
+  pattern:    /fabrication/{id}
+  defaults:   { _controller: elfibMouvementBundle:Mouvement:fabrication }
+  requirements:
+      id: \d+

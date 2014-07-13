@@ -25,44 +25,18 @@ class commandePF extends Mouvement
     /**
      * @var string
      *
-     * @ORM\Column(name="expediteur", type="string", length=255)
-     * @ORM\OneToOne(targetEntity="elfib\CommercialBundle\Entity\Client", cascade={"persist"})
-     */
-    private $expediteur;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="destinataire", type="string", length=255)
+     * @ORM\OneToOne(targetEntity="elfib\CommercialBundle\Entity\Clients", cascade={"persist"})
      */
     private $destinataire;
+
+    /**
+     * @ORM\OnetoOne(targetEntity="elfib\ArticleBundle\Entity\ProduitFini")
+     */
+    private $produitFini;
 
     public function __construct()
     {
         $this->typeMouvement = "transfert";
-    }
-
-    /**
-     * Set expediteur
-     *
-     * @param string $expediteur
-     * @return commandePF
-     */
-    public function setExpediteur($expediteur)
-    {
-        $this->expediteur = $expediteur;
-    
-        return $this;
-    }
-
-    /**
-     * Get expediteur
-     *
-     * @return string 
-     */
-    public function getExpediteur()
-    {
-        return $this->expediteur;
     }
 
     /**
@@ -109,5 +83,23 @@ class commandePF extends Mouvement
     public function getTypeMouvement()
     {
         return $this->typeMouvement;
+    }
+
+    /**
+     * Set produitFini
+     */
+    public function setProduitFini($produitFini)
+    {
+        $this->produitFini = $produitFini;
+
+        return $this;
+    }
+
+    /**
+     * Get produit Fini
+     */
+    public function getProduitFini()
+    {
+        return $this->produitFini;
     }
 }

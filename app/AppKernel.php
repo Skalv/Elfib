@@ -37,4 +37,14 @@ class AppKernel extends Kernel
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
+
+    public function getCacheDir()
+    {
+        return '/tmp/symfony/cache/'.$this->environment;
+    }
+
+    public function getLogDir()
+    {
+        return '/tmp/symfony/logs/'.$this->environment;
+    }
 }

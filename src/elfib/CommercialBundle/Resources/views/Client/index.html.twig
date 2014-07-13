@@ -13,7 +13,8 @@
         <span class="badge badge-success pull-right">Ajouter un client</span>
       </a>
     </h3>
-    <hr>
+    
+    <!-- <hr>
     <div class="row">
       <div class="col-md-3">
         <div class="form-search search-only">
@@ -34,7 +35,8 @@
         </div>
       </div>
       <button class="btn btn-primary col-md-3">Rechercher</button>
-    </div>
+    </div> -->
+
     <div class="clearfix"></div><hr>
     <div class="row">
       <div class="container-fluid">
@@ -52,7 +54,7 @@
               <th>Action</th>
             </tr>
             {% for client in clients %}
-              <tr>
+              <tr {% if client.actif %}Class="success"{% else %}Class="danger"{% endif %}>
                 <td>{{ client.nom }}</td>
                 <td>{{ client.Activite }}</td>
                 <td>{{ client.sieRue }}</td>

@@ -39,6 +39,14 @@ class Emplacements
     private $capacite;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="currentOccupancy", type="integer")
+     * @Assert\NotBlank()
+     */
+    private $currentOccupancy;
+
+    /**
      * @var string
      *
      * @ORM\ManyToOne(targetEntity="elfib\StockBundle\Entity\Magasins",
@@ -51,9 +59,7 @@ class Emplacements
     /**
      * @var string
      *
-     * @ORM\ManyToOne(targetEntity="elfib\ArticleBundle\Entity\Nomenclatures",
-     *   cascade={"persist"},
-     *   inversedBy="nomenclature")
+     * @ORM\ManyToOne(targetEntity="elfib\ArticleBundle\Entity\Nomenclatures")
      */
     private $nomenclature;
 
@@ -165,5 +171,61 @@ class Emplacements
     public function getNomenclature()
     {
         return $this->nomenclature;
+    }
+
+    /**
+     * Set actif
+     *
+     * @param boolean $actif
+     * @return Emplacements
+     */
+    public function setActif($actif)
+    {
+        $this->actif = $actif;
+    
+        return $this;
+    }
+
+    /**
+     * Get actif
+     *
+     * @return boolean 
+     */
+    public function getActif()
+    {
+        return $this->actif;
+    }
+
+    /**
+     * Test si l'emplacement est vide ou non
+     *
+     * @return boolean
+     */
+    public function hasNomenclature()
+    {
+        return (count($this->getNomenclature()) > 0)? true : false;
+    }
+
+    /**
+     * Set currentOccupancy
+     *
+     * @param integer $currentOccupancy
+     * @return Emplacements
+     */
+    public function setCurrentOccupancy($currentOccupancy)
+    {
+        $this->currentOccupancy = $currentOccupancy;
+    
+        return $this;
+    }
+
+    /**
+     * Get currentOccupancy
+     *
+     * @return integer 
+     */
+    public function getCurrentOccupancy()
+    {
+        return $this->currentOccupancy;
     }
 }

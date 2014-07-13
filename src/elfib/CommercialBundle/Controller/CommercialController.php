@@ -127,7 +127,6 @@ class CommercialController extends Controller
     public function clientAjoutAction()
     {
       $client = new Clients();
-      $client->setActif(false);
       $form = $this->createForm(new ClientsType, $client);
       $request = $this->get('request');
       if ($request->getMethod() == 'POST') {
@@ -138,7 +137,7 @@ class CommercialController extends Controller
           $em->persist($client);
           $em->flush();
 
-          $this->get('session')->getFlashBag()->add('info', 'Client ajouté.');
+          $this->get('session')->getFlashBag()->add('info', 'Client ajouté !');
           return $this->redirect($this->generateUrl('elfib_commercial_client_index'));
         }
       }

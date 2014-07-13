@@ -32,10 +32,9 @@ class commandeMP extends Mouvement
     /**
      * @var string
      *
-     * @ORM\Column(name="destinataire", type="string", length=255)
-     * @ORM\OneToOne(targetEntity="elfib\CommercialBundle\Entity\Fournisseurs", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="elfib\ArticleBundle\Entity\MatierePremiere", cascade={"persist"})
      */
-    private $destinataire;
+    private $matierePremiere;
 
     public function __construct()
     {

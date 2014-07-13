@@ -3,8 +3,7 @@
 namespace elfib\ArticleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use elfib\ArticleBundle\Entity\Nomenclatures;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * MatierePremiere
@@ -12,76 +11,161 @@ use elfib\ArticleBundle\Entity\Nomenclatures;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="elfib\ArticleBundle\Entity\MatierePremiereRepository")
  */
-class MatierePremiere extends Nomenclatures
+class MatierePremiere
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
      * @var string
+     *
+     * @ORM\Column(name="libelle", type="string", length=255)
+     */
+    private $libelle;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCreation", type="datetime")
+     */
+    private $dateCreation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="prix", type="integer")
+     */
+    private $prix;
+
+    /**
+     * @var collection
      *
      * @ORM\ManyToMany(targetEntity="elfib\CommercialBundle\Entity\Fournisseurs", cascade={"persist"})
      */
     private $fournisseurs;
 
     /**
-     * Set fournisseur
+     * @var string
      *
-     * @param string $fournisseur
+     * @ORM\Column(name="qrcode", type="string", length=255)
+     */
+    private $qrcode;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="seuilMini", type="integer")
+     */
+    private $seuilMini;
+
+    public function __construct()
+    {
+        $this->fournisseurs = new ArrayCollection();
+    }
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set libelle
+     *
+     * @param string $libelle
      * @return MatierePremiere
      */
-    public function setFournisseur($fournisseur)
+    public function setLibelle($libelle)
     {
-        $this->fournisseur = $fournisseur;
+        $this->libelle = $libelle;
     
         return $this;
     }
 
     /**
-     * Get fournisseur
+     * Get libelle
      *
      * @return string 
      */
-    public function getFournisseur()
+    public function getLibelle()
     {
-        return $this->fournisseur;
+        return $this->libelle;
     }
-    
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $emplacements;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $mouvements;
-
-
-    /**
-     * Add fournisseurs
+     * Set dateCreation
      *
-     * @param \elfib\CommercialBundle\Entity\Fournisseurs $fournisseurs
+     * @param \DateTime $dateCreation
      * @return MatierePremiere
      */
-    public function addFournisseur(\elfib\CommercialBundle\Entity\Fournisseurs $fournisseurs)
+    public function setDateCreation($dateCreation)
     {
-        $this->fournisseurs[] = $fournisseurs;
+        $this->dateCreation = $dateCreation;
     
         return $this;
     }
 
     /**
-     * Remove fournisseurs
+     * Get dateCreation
      *
-     * @param \elfib\CommercialBundle\Entity\Fournisseurs $fournisseurs
+     * @return \DateTime 
      */
-    public function removeFournisseur(\elfib\CommercialBundle\Entity\Fournisseurs $fournisseurs)
+    public function getDateCreation()
     {
-        $this->fournisseurs->removeElement($fournisseurs);
+        return $this->dateCreation;
+    }
+
+    /**
+     * Set prix
+     *
+     * @param integer $prix
+     * @return MatierePremiere
+     */
+    public function setPrix($prix)
+    {
+        $this->prix = $prix;
+    
+        return $this;
+    }
+
+    /**
+     * Get prix
+     *
+     * @return integer 
+     */
+    public function getPrix()
+    {
+        return $this->prix;
+    }
+
+    /**
+     * Set fournisseurs
+     *
+     * @param array $fournisseurs
+     * @return MatierePremiere
+     */
+    public function setFournisseurs($fournisseurs)
+    {
+        $this->fournisseurs = $fournisseurs;
+    
+        return $this;
     }
 
     /**
      * Get fournisseurs
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return array 
      */
     public function getFournisseurs()
     {
@@ -89,109 +173,85 @@ class MatierePremiere extends Nomenclatures
     }
 
     /**
-     * Add ProduitFini
+     * Set seuilMini
      *
-     * @param \elfib\ArticleBundle\Entity\ProduitFini $produitFini
+     * @param integer $seuilMini
      * @return MatierePremiere
      */
-    public function addProduitFini(\elfib\ArticleBundle\Entity\ProduitFini $produitFini)
+    public function setSeuilMini($seuilMini)
     {
-        $this->ProduitFini[] = $produitFini;
+        $this->seuilMini = $seuilMini;
     
         return $this;
     }
 
     /**
-     * Remove ProduitFini
+     * Get seuilMini
      *
-     * @param \elfib\ArticleBundle\Entity\ProduitFini $produitFini
+     * @return integer 
      */
-    public function removeProduitFini(\elfib\ArticleBundle\Entity\ProduitFini $produitFini)
+    public function getSeuilMini()
     {
-        $this->ProduitFini->removeElement($produitFini);
+        return $this->seuilMini;
     }
 
     /**
-     * Get ProduitFini
+     * Get web path
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return $path string
      */
-    public function getProduitFini()
+    public function getQRWebPath()
     {
-        return $this->ProduitFini;
+        return "/img/qrcodes";
     }
 
     /**
-     * Add emplacements
+     * Get absolute Path.
      *
-     * @param \elfib\StockBundle\Entity\Emplacements $emplacements
-     * @return MatierePremiere
+     * @return $path
      */
-    public function addEmplacement(\elfib\StockBundle\Entity\Emplacements $emplacements)
+    public function getQRAbsolutePath()
     {
-        $this->emplacements[] = $emplacements;
+        return "/var/www/project/web".$this->getQRWebPath();
+    }
+
+    /**
+     * Generate QRCode.
+     *
+     * @return $name string Name of png created.
+     */
+    public function GenerateQRCode()
+    {
+        $viewPath = $this->getQRWebPath();
+        $absolutePath = $this->getQRAbsolutePath();
+        $name = "qr-".$this->getLibelle().'.png';
+        $dr = DIRECTORY_SEPARATOR;
+
+        \PHPQRCode\QRcode::png($viewPath, $absolutePath.$dr.$name, 'L', 4, 2);
+
+        $this->qrcode = $this->getQRWebPath().DIRECTORY_SEPARATOR.$name;
+    }
+
+    /**
+     * get Qrcode.
+     *
+     * @return $path Webpath of QRCode
+     */
+    public function getQRCode()
+    {
+        return $this->qrcode;
+    }
+
+    /**
+     * Set qrcode
+     *
+     * @param string $qrcode
+     * @return Nomenclatures
+     */
+    public function setQrcode($qrcode)
+    {
+        $this->qrcode = $qrcode;
     
         return $this;
     }
-
-    /**
-     * Remove emplacements
-     *
-     * @param \elfib\StockBundle\Entity\Emplacements $emplacements
-     */
-    public function removeEmplacement(\elfib\StockBundle\Entity\Emplacements $emplacements)
-    {
-        $this->emplacements->removeElement($emplacements);
-    }
-
-    /**
-     * Get emplacements
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getEmplacements()
-    {
-        return $this->emplacements;
-    }
-
-    /**
-     * Add mouvements
-     *
-     * @param \elfib\StockBundle\Entity\Emplacements $mouvements
-     * @return MatierePremiere
-     */
-    public function addMouvement(\elfib\StockBundle\Entity\Emplacements $mouvements)
-    {
-        $this->mouvements[] = $mouvements;
-    
-        return $this;
-    }
-
-    /**
-     * Remove mouvements
-     *
-     * @param \elfib\StockBundle\Entity\Emplacements $mouvements
-     */
-    public function removeMouvement(\elfib\StockBundle\Entity\Emplacements $mouvements)
-    {
-        $this->mouvements->removeElement($mouvements);
-    }
-
-    /**
-     * Get mouvements
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getMouvements()
-    {
-        return $this->mouvements;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->fournisseurs = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
 }

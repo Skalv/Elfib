@@ -23,11 +23,32 @@ new mouvement (type, produit, depart, destination)
 1 nomenclature contient plusieurs mouvements
 1 mouvement appartient a 1 seul nomenclature.
 
-bdl MP (Exp = fourni / des = elfib) livraisonMP
-bdc PF (Exp = client / des = elfib)  commandePF
-bdl PF (Exp = elfib / des = client) livraisonPF
-bdc MP (Exp = elfib / dex = fourni) commandeMP
+bdl MP (Expediteur = fourni / destinataire = elfib) livraisonMP / addMP
+bdc PF (Expediteur = client / destinataire = elfib)  commandePF / addPF
+bdl PF (Expediteur = elfib / destinataire = client) livraisonPF / 
+bdc MP (Expediteur = elfib / dextinataire = fourni) commandeMP
+
+BdL MP => addMP
+BdC PF => 
 
 
 execute mouvement :
 
+
+// 07/07/2014 : 
+  - Tri par type de nomenclature dans l'ajout de BDL MP (que le nomenclature de MP).
+  - Voir les stocks.
+  - filtrer les magasins inactif dans l'ajout d'emplacement.
+
+// 08/07/2014
+  - Completer les emplacement si même matiere.
+  - Quandtité de MP a enlever lors de la fabrique de PF.
+
+// 09/07/2014
+
+  - Matiere Premiere : ID, libelle, dateCreation, prix, fournisseurs (collections), qrcode, seuilMini
+  - Produit fini : Id, libelle, dateCreation, prix, composants (collections), qrcode, seuilMini
+  - Composants : Id, produitFini, Matiere Première, Quantité
+
+// 11/07/14
+  - Lors des ajouts dans MP tester la place restante.

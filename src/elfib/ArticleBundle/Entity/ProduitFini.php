@@ -3,170 +3,246 @@
 namespace elfib\ArticleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use elfib\ArticleBundle\Entity\Nomenclatures;
 use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * ProduitFini
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="elfib\ArticleBundle\Entity\ProduitFiniRepository")
  */
-class ProduitFini extends Nomenclatures
+class ProduitFini
 {
     /**
-     * @var MatierePremiere
+     * @var integer
      *
-     * @ORM\ManyToMany(targetEntity="elfib\ArticleBundle\Entity\MatierePremiere", cascade={"persist"})
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $matierePremieres;
+    private $id;
 
     /**
-     * Set composants
+     * @ORM\OneToMany(targetEntity="elfib\ArticleBundle\Entity\Composant", mappedBy="produitFini", cascade={"persist", "remove"})
+     */
+    private $composants;
+
+    /**
+     * @var string
      *
-     * @param array $composants
-     * @return ProduitFini
+     * @ORM\Column(name="libelle", type="string", length=255)
      */
-    public function setComposants($composants)
-    {
-        $this->composants = $composants;
-    
-        return $this;
-    }
+    private $libelle;
 
     /**
-     * Get composants
+     * @var \DateTime
      *
-     * @return array 
+     * @ORM\Column(name="dateCreation", type="datetime")
      */
-    public function getComposants()
-    {
-        return $this->composants;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $emplacements;
+    private $dateCreation;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $mouvements;
-
-
-    /**
-     * Add MatierePremiere
+     * @var integer
      *
-     * @param \elfib\ArticleBundle\Entity\MatierePremiere $matierePremiere
-     * @return ProduitFini
+     * @ORM\Column(name="prix", type="integer")
      */
-    public function addMatierePremiere(\elfib\ArticleBundle\Entity\MatierePremiere $matierePremiere)
-    {
-        $this->MatierePremiere[] = $matierePremiere;
-    
-        return $this;
-    }
+    private $prix;
 
     /**
-     * Remove MatierePremiere
+     * @var string
      *
-     * @param \elfib\ArticleBundle\Entity\MatierePremiere $matierePremiere
+     * @ORM\Column(name="qrcode", type="string", length=255)
      */
-    public function removeMatierePremiere(\elfib\ArticleBundle\Entity\MatierePremiere $matierePremiere)
-    {
-        $this->MatierePremiere->removeElement($matierePremiere);
-    }
+    private $qrcode;
 
     /**
-     * Get MatierePremiere
+     * @var integer
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @ORM\Column(name="seuilMini", type="integer")
      */
-    public function getMatierePremiere()
-    {
-        return $this->MatierePremiere;
-    }
+    private $seuilMini;
 
-    /**
-     * Add emplacements
-     *
-     * @param \elfib\StockBundle\Entity\Emplacements $emplacements
-     * @return ProduitFini
-     */
-    public function addEmplacement(\elfib\StockBundle\Entity\Emplacements $emplacements)
-    {
-        $this->emplacements[] = $emplacements;
-    
-        return $this;
-    }
-
-    /**
-     * Remove emplacements
-     *
-     * @param \elfib\StockBundle\Entity\Emplacements $emplacements
-     */
-    public function removeEmplacement(\elfib\StockBundle\Entity\Emplacements $emplacements)
-    {
-        $this->emplacements->removeElement($emplacements);
-    }
-
-    /**
-     * Get emplacements
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getEmplacements()
-    {
-        return $this->emplacements;
-    }
-
-    /**
-     * Add mouvements
-     *
-     * @param \elfib\StockBundle\Entity\Emplacements $mouvements
-     * @return ProduitFini
-     */
-    public function addMouvement(\elfib\StockBundle\Entity\Emplacements $mouvements)
-    {
-        $this->mouvements[] = $mouvements;
-    
-        return $this;
-    }
-
-    /**
-     * Remove mouvements
-     *
-     * @param \elfib\StockBundle\Entity\Emplacements $mouvements
-     */
-    public function removeMouvement(\elfib\StockBundle\Entity\Emplacements $mouvements)
-    {
-        $this->mouvements->removeElement($mouvements);
-    }
-
-    /**
-     * Get mouvements
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getMouvements()
-    {
-        return $this->mouvements;
-    }
-    /**
-     * Constructor
-     */
     public function __construct()
     {
-        $this->matierePremieres = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->composants = new ArrayCollection();
     }
-    
-    /**
-     * Get matierePremieres
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getMatierePremieres()
+
+    public function addComposants($composant)
     {
-        return $this->matierePremieres;
+    $this->composants[] = $composant;
+    return $this;
+    }
+
+    public function removeComposants($composant)
+    {
+    $this->composants->removeElement($composant);
+    }
+
+    public function getComposants()
+    {
+    return $this->composants;
+    }
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set libelle
+     *
+     * @param string $libelle
+     * @return ProduitFini
+     */
+    public function setLibelle($libelle)
+    {
+        $this->libelle = $libelle;
+    
+        return $this;
+    }
+
+    /**
+     * Get libelle
+     *
+     * @return string 
+     */
+    public function getLibelle()
+    {
+        return $this->libelle;
+    }
+
+    /**
+     * Set dateCreation
+     *
+     * @param \DateTime $dateCreation
+     * @return ProduitFini
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+    
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return \DateTime 
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
+    }
+
+    /**
+     * Set prix
+     *
+     * @param integer $prix
+     * @return ProduitFini
+     */
+    public function setPrix($prix)
+    {
+        $this->prix = $prix;
+    
+        return $this;
+    }
+
+    /**
+     * Get prix
+     *
+     * @return integer 
+     */
+    public function getPrix()
+    {
+        return $this->prix;
+    }
+
+    /**
+     * Get web path
+     *
+     * @return $path string
+     */
+    public function getQRWebPath()
+    {
+        return "/img/qrcodes";
+    }
+
+    /**
+     * Get absolute Path.
+     *
+     * @return $path
+     */
+    public function getQRAbsolutePath()
+    {
+        return "/var/www/project/web".$this->getQRWebPath();
+    }
+
+    /**
+     * Generate QRCode.
+     *
+     * @return $name string Name of png created.
+     */
+    public function GenerateQRCode()
+    {
+        $viewPath = $this->getQRWebPath();
+        $absolutePath = $this->getQRAbsolutePath();
+        $name = "qr-".$this->getLibelle().'.png';
+        $dr = DIRECTORY_SEPARATOR;
+
+        \PHPQRCode\QRcode::png($viewPath, $absolutePath.$dr.$name, 'L', 4, 2);
+
+        $this->qrcode = $this->getQRWebPath().DIRECTORY_SEPARATOR.$name;
+    }
+
+    /**
+     * get Qrcode.
+     *
+     * @return $path Webpath of QRCode
+     */
+    public function getQRCode()
+    {
+        return $this->qrcode;
+    }
+
+    /**
+     * Set qrcode
+     *
+     * @param string $qrcode
+     * @return Nomenclatures
+     */
+    public function setQrcode($qrcode)
+    {
+        $this->qrcode = $qrcode;
+    
+        return $this;
+    }
+
+    /**
+     * Set seuilMini
+     *
+     * @param integer $seuilMini
+     * @return ProduitFini
+     */
+    public function setSeuilMini($seuilMini)
+    {
+        $this->seuilMini = $seuilMini;
+    
+        return $this;
+    }
+
+    /**
+     * Get seuilMini
+     *
+     * @return integer 
+     */
+    public function getSeuilMini()
+    {
+        return $this->seuilMini;
     }
 }

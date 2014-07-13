@@ -12,4 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class EmplacementsRepository extends EntityRepository
 {
+  public function getForFabrication($nomenclature)
+  {
+    $queryBuilder = $this->createQueryBuilder('emp')
+      ->where('matierePremiere_id = ?', $nomenclature->getId())
+      ->orderBy('');
+    
+    $query = $queryBuilder->getQuery();
+    
+    $resultats = $query->getResult();
+
+    return $resultats;
+  }
 }

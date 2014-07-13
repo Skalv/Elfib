@@ -39,6 +39,13 @@ class Emplacements
     private $capacite;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="currentOccupancy", type="integer")
+     */
+    private $currentOccupancy;
+
+    /**
      * @var string
      *
      * @ORM\ManyToOne(targetEntity="elfib\StockBundle\Entity\Magasins",
@@ -51,11 +58,19 @@ class Emplacements
     /**
      * @var string
      *
-     * @ORM\ManyToOne(targetEntity="elfib\ArticleBundle\Entity\Nomenclatures",
-     *   cascade={"persist"},
-     *   inversedBy="nomenclature")
+     * @ORM\ManyToOne(targetEntity="elfib\ArticleBundle\Entity\ProduitFini")
      */
-    private $nomenclature;
+    private $produitFini;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="elfib\ArticleBundle\Entity\MatierePremiere")
+     */
+    private $matierePremiere;
+
+    /**
+     * @ORM\Column(name="dateEntre", type="datetime")
+     */
+    private $dateEntre;
 
     /**
      * @var boolean
@@ -63,6 +78,11 @@ class Emplacements
      * @ORM\Column(name="actif", type="boolean")
      */
     private $actif;
+
+    public function __construct()
+    {
+        $this->currentOccupancy = 0;
+    }
 
 
     /**
@@ -96,6 +116,24 @@ class Emplacements
     public function getLibelle()
     {
         return $this->libelle;
+    }
+
+    /**
+     * Set Date entre
+     */
+    public function setDateEntre($date)
+    {
+        $this->dateEntre = $date;
+
+        return $this;
+    }
+
+    /**
+     * get date Entre
+     */
+    public function getDateEntre()
+    {
+        return $this->dateEntre;
     }
 
     /**
@@ -150,9 +188,13 @@ class Emplacements
      * @param \elfib\ArticleBundle\Entity\Nomenclatures $nomenclature
      * @return Emplacements
      */
-    public function setNomenclature(\elfib\ArticleBundle\Entity\Nomenclatures $nomenclature = null)
+    public function setNomenclature($nomenclature = null)
     {
-        $this->nomenclature = $nomenclature;
+        if (get_class($nomenclature) == "elfib\ArticleBundle\Entity\MatierePremiere") {
+            $this->matierePremiere = $nomenclature;
+        } else if(get_class($nomenclature) == "elfib\ArticleBundle\Entity\ProduitFini") {
+            $this->produitFini = $nomenclature;
+        }
     
         return $this;
     }
@@ -164,7 +206,7 @@ class Emplacements
      */
     public function getNomenclature()
     {
-        return $this->nomenclature;
+        return ($this->matierePremiere)? $this->matierePremiere : $this->produitFini;
     }
 
     /**
@@ -197,6 +239,29 @@ class Emplacements
      */
     public function hasNomenclature()
     {
-        return (count($this->getNomenclature() > 0))? true : false;
+        return (count($this->getNomenclature()) > 0)? true : false;
+    }
+
+    /**
+     * Set currentOccupancy
+     *
+     * @param integer $currentOccupancy
+     * @return Emplacements
+     */
+    public function setCurrentOccupancy($currentOccupancy)
+    {
+        $this->currentOccupancy = $currentOccupancy;
+    
+        return $this;
+    }
+
+    /**
+     * Get currentOccupancy
+     *
+     * @return integer 
+     */
+    public function getCurrentOccupancy()
+    {
+        return $this->currentOccupancy;
     }
 }

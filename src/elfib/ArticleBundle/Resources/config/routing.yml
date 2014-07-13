@@ -6,9 +6,19 @@ elfib_nomenclature_homepage:
 #
 # Nomenclatures
 #
-elfib_nomenclature_ajout:
-    pattern:  /article/ajout/{type}
-    defaults: { _controller: elfibArticleBundle:Nomenclature:ajout }
+elfib_nomenclature_voir:
+    pattern:  /article/{id}
+    defaults: { _controller: elfibArticleBundle:Nomenclature:voir }
+    requirements:
+      id: \d+
+
+elfib_nomenclature_ajout_produit_fini:
+    pattern:  /article/ajout/produit_fini
+    defaults: { _controller: elfibArticleBundle:Nomenclature:ajoutPF }
+
+elfib_nomenclature_ajout_matiere_premiere:
+    pattern:  /article/ajout/matiere_premiere
+    defaults: { _controller: elfibArticleBundle:Nomenclature:ajoutMP }
 
 elfib_nomenclature_modifier:
     pattern:  /article/modifier/{id}

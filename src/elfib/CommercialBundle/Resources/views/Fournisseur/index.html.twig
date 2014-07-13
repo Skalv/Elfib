@@ -13,7 +13,7 @@
         <span class="badge badge-success pull-right">Ajouter un fournisseur</span>
       </a>
     </h3>
-    <hr>
+    <!-- <hr>
     <div class="row">
       <div class="col-md-3">
         <div class="form-search search-only">
@@ -34,7 +34,8 @@
         </div>
       </div>
       <button class="btn btn-primary col-md-3">Rechercher</button>
-    </div>
+    </div> -->
+
     <div class="clearfix"></div><hr>
     <div class="row">
       <div class="container-fluid">
@@ -53,7 +54,7 @@
               <th>Action</th>
             </tr>
             {% for fournisseur in fournisseurs %}
-              <tr>
+              <tr {% if fournisseur.actif %}Class="success"{% else %}Class="danger"{% endif %}>
                 <td>{{ fournisseur.code }}</td>
                 <td>{{ fournisseur.nom }}</td>
                 <td>{{ fournisseur.adrRue }}</td>

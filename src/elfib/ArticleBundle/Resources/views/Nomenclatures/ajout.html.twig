@@ -9,109 +9,154 @@
 {% block body %}
   <h3>Ajouter une nomenclature</h3>
   <hr>
-<div id="fournisseurAjout" class="text-center">
+<div id="nomenclatureAjout" class="text-center">
   {{ form_start(form) }}
-
-  <div class="row">
-            <div class="col-md-6">
-              {% if form_errors(form.libelle) %}
-                <div class="form-group has-error has-feedback">
-                  <label class="control-label" for="code">{{ form_errors(form.libelle) }}</label>
-                  {{ form_widget(form.libelle, {'attr': {'class': 'form-control',
-                    'placeholder': 'Libelle', 'novalidate': true}} ) }}
-                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
-                </div>
-              {% else %}
-                <div class="form-group">
-                  <label class="control-label" for="code">Libelle</label>
-                  {{ form_widget(form.libelle, {'attr': {'class': 'form-control',
-                    'placeholder': 'Libelle'}} ) }}
-                </div>
-              {% endif %}
-            </div>
+    <!-- libelle -->
+    <div class="row">
+      <div class="col-md-6">
+        {% if form_errors(form.libelle) %}
+          <div class="form-group has-error has-feedback">
+            <label class="control-label" for="code">{{ form_errors(form.libelle) }}</label>
+            {{ form_widget(form.libelle, {'attr': {'class': 'form-control',
+              'placeholder': 'Libelle', 'novalidate': true}} ) }}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
           </div>
-
-          <div class="row">
-            <div class="col-md-6">
-              {% if form_errors(form.prix) %}
-                <div class="form-group has-error has-feedback">
-                  <label class="control-label" for="code">{{ form_errors(form.prix) }}</label>
-                  {{ form_widget(form.prix, {'attr': {'class': 'form-control',
-                    'placeholder': 'prix'}} ) }}
-                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
-                </div>  
-              {% else %}
-                <div class="form-group">
-                  <label class="control-label" for="code">Prix</label>
-                  {{ form_widget(form.prix, {'attr': {'class': 'form-control',
-                    'placeholder': 'Prix'}} ) }}
-                </div>
-              {% endif %}
-            </div>
+        {% else %}
+          <div class="form-group">
+            <label class="control-label" for="code">Libelle</label>
+            {{ form_widget(form.libelle, {'attr': {'class': 'form-control',
+              'placeholder': 'Libelle'}} ) }}
           </div>
-
-          <div class="row">
-            <div class="col-md-6">
-              {% if form_errors(form.seuilMini) %}
-                <div class="form-group has-error has-feedback">
-                  <label class="control-label" for="code">{{ form_errors(form.seuilMini) }}</label>
-                  {{ form_widget(form.seuilMini, {'attr': {'class': 'form-control',
-                    'placeholder': 'Seuil Minimum'}} ) }}
-                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
-                </div>  
-              {% else %}
-                <div class="form-group">
-                  <label class="control-label" for="code">Seuil Minimum</label>
-                  {{ form_widget(form.seuilMini, {'attr': {'class': 'form-control',
-                    'placeholder': 'Seuil Minimum'}} ) }}
-                </div>
-              {% endif %}
-            </div>
+        {% endif %}
+      </div>
+    </div>
+    <!-- Prix -->
+    <div class="row">
+      <div class="col-md-6">
+        {% if form_errors(form.prix) %}
+          <div class="form-group has-error has-feedback">
+            <label class="control-label" for="code">{{ form_errors(form.prix) }}</label>
+            {{ form_widget(form.prix, {'attr': {'class': 'form-control',
+              'placeholder': 'prix'}} ) }}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>  
+        {% else %}
+          <div class="form-group">
+            <label class="control-label" for="code">Prix</label>
+            {{ form_widget(form.prix, {'attr': {'class': 'form-control',
+              'placeholder': 'Prix'}} ) }}
           </div>
-
-          {% if type == 'matierePremiere' %}
-
-            <div class="row">
-            <div class="col-md-6">
-              {% if form_errors(form.fournisseurs) %}
-                <div class="form-group has-error has-feedback">
-                  <label class="control-label" for="code">{{ form_errors(form.fournisseurs) }}</label>
-                  {{ form_widget(form.fournisseurs, {'attr': {'class': 'form-control',
-                    'placeholder': 'Fournisseur'}} ) }}
-                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
-                </div>  
-              {% else %}
-                <div class="form-group">
-                  <label class="control-label" for="code">Fournisseur</label>
-                  {{ form_widget(form.fournisseurs, {'attr': {'class': 'form-control',
-                    'placeholder': 'Fournisseur'}} ) }}
-                </div>
-              {% endif %}
-            </div>
+        {% endif %}
+      </div>
+    </div>
+    <!-- Seuil Mini -->
+    <div class="row">
+      <div class="col-md-6">
+        {% if form_errors(form.seuilMini) %}
+          <div class="form-group has-error has-feedback">
+            <label class="control-label" for="code">{{ form_errors(form.seuilMini) }}</label>
+            {{ form_widget(form.seuilMini, {'attr': {'class': 'form-control',
+              'placeholder': 'Seuil Minimum'}} ) }}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+          </div>  
+        {% else %}
+          <div class="form-group">
+            <label class="control-label" for="code">Seuil Minimum</label>
+            {{ form_widget(form.seuilMini, {'attr': {'class': 'form-control',
+              'placeholder': 'Seuil Minimum'}} ) }}
           </div>
+        {% endif %}
+      </div>
+    </div>
 
+    {% if type == 'matierePremiere' %}
+      <!-- Fournisseurs -->
+      <div class="row">
+        <div class="col-md-6">
+          {% if form_errors(form.fournisseurs) %}
+            <div class="form-group has-error has-feedback">
+              <label class="control-label" for="code">{{ form_errors(form.fournisseurs) }}</label>
+              {{ form_widget(form.fournisseurs, {'attr': {'class': 'form-control',
+                'placeholder': 'Fournisseur'}} ) }}
+              <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            </div>  
           {% else %}
-            
-            {% if form_errors(form.matierePremieres) %}
-                <div class="form-group has-error has-feedback">
-                  <label class="control-label" for="code">{{ form_errors(form.matierePremieres) }}</label>
-                  {{ form_widget(form.matierePremieres, {'attr': {'class': 'form-control',
-                    'placeholder': 'Matière première'}} ) }}
-                  <span class="glyphicon glyphicon-remove form-control-feedback"></span>
-                </div>  
-              {% else %}
-                <div class="form-group">
-                  <label class="control-label" for="code">Matière première</label>
-                  {{ form_widget(form.matierePremieres, {'attr': {'class': 'form-control',
-                    'placeholder': 'Matière première'}} ) }}
-                </div>
-              {% endif %}
-
+            <div class="form-group">
+              <label class="control-label" for="code">Fournisseur</label>
+              {{ form_widget(form.fournisseurs, {'attr': {'class': 'form-control',
+                'placeholder': 'Fournisseur'}} ) }}
+            </div>
           {% endif %}
+        </div>
+      </div>
 
-</div>
-<button class="btn btn-success" type="submit">Ajouter</button>
+    {% else %}
+      <!-- Composants -->
+      <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+          {{ form_row(form.composants) }}
+          <br>
+          <a href="#" id="add_component" class="btn btn-info">Ajouter un composant</a>
+        </div>
+      </div>
+    {% endif %}
+
+  <br>
+  <button class="btn btn-success" type="submit">Ajouter</button>
 {{ form_end(form)}}
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  var $container = $('div#elfib_articlebundle_produitfini_composants');
+  var $addLink = $('#add_component');
+
+  $addLink.click(function(e) {
+    addComponent($container);
+    e.preventDefault();
+    return false;
+  });
+
+  var index = $container.find(':input').length;
+
+  if (index == 0) {
+    addComponent($container);
+  } else {
+    $container.children('div').each(function() {
+      addDeleteLink($(this));
+    });
+  }
+
+  function addComponent($container) {
+    var $prototype = $($container.attr('data-prototype').replace(/__name__label__/g, 'Composant n°' + (index+1))
+                                                        .replace(/__name__/g, index));
+
+    addDeleteLink($prototype);
+    $container.append($prototype);
+
+
+    var $formGroup = $('div#elfib_articlebundle_produitfini_composants_' + index);
+    $formGroup.children('div').each(function() {
+      $(this).addClass('form-group');
+      $(this).children('select').addClass('form-control');
+      $(this).children('input').addClass('form-control col-md-2');
+    });
+
+    index++;
+  }
+
+  function addDeleteLink($prototype) {
+    $delLink = $('<a href="#" class="btn btn-danger">Supprimer</a><br>');
+    $prototype.append($delLink);
+
+    $delLink.click(function(e) {
+      $prototype.remove();
+      e.preventDefault();
+      return false;
+    });
+  }
+});
+</script>
 
 {% endblock %}
-      

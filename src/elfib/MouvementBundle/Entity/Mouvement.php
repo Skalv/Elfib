@@ -33,29 +33,16 @@ class Mouvement
     /**
      * @var emplacement
      *
-     * @ORM\Column(name="emplacementDepart", type="string", length=255)
      * @ORM\OneToOne(targetEntity="elfib\StockBundle\Entity\Emplacements", cascade={"persist"})
-     * @Assert\NotBlank()
      */
     private $emplacementDepart;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="emplacementArrive", type="string", length=255)
      * @ORM\OneToOne(targetEntity="elfib\StockBundle\Entity\Emplacements", cascade={"persist"})
-     * @Assert\NotBlank()
      */
     private $emplacementArrive;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nomenclature", type="string", length=255)
-     * @ORM\ManyToOne(targetEntity="elfib\ArticleBundle\Entity\Nomenclatures", cascade={"persist"})
-     * @Assert\NotBlank()
-     */
-    private $nomenclature;
 
     /**
      * @var \DateTime
@@ -158,29 +145,6 @@ class Mouvement
     public function getEmplacementArrive()
     {
         return $this->emplacementArrive;
-    }
-
-    /**
-     * Set nomenclature
-     *
-     * @param string $nomenclature
-     * @return Mouvement
-     */
-    public function setNomenclature($nomenclature)
-    {
-        $this->nomenclature = $nomenclature;
-    
-        return $this;
-    }
-
-    /**
-     * Get nomenclature
-     *
-     * @return string 
-     */
-    public function getNomenclature()
-    {
-        return $this->nomenclature;
     }
 
     /**
@@ -296,25 +260,5 @@ class Mouvement
     public function getDestinataire()
     {
         return $this->destinataire;
-    }
-
-    /**
-     * getBon
-     *
-     * @return array
-     */
-    public function getBon()
-    {
-        
-    }
-
-    /**
-     * executeMouvement
-     *
-     * @return void
-     */
-    public function executeMouvement()
-    {
-        
     }
 }

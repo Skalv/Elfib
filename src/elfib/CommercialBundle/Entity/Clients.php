@@ -51,7 +51,7 @@ class Clients
      * @var string
      *
      * @ORM\Column(name="sieCP", type="string", length=5)
-     * @Assert\length(
+     * @Assert\Length(
      *          min = "5",
      *          max = "5",
      *          exactMessage = "Le code postal doit faire {{ limit }} caractères."
@@ -79,7 +79,7 @@ class Clients
      * @var string
      *
      * @ORM\Column(name="livCP", type="string", length=5)
-     * @Assert\length(
+     * @Assert\Length(
      *          min = "5",
      *          max = "5",
      *          exactMessage = "Le code postal doit faire {{ limit }} caractères."
@@ -107,7 +107,7 @@ class Clients
      * @var string
      *
      * @ORM\Column(name="facCP", type="string", length=5)
-     * @Assert\length(
+     * @Assert\Length(
      *          min = "5",
      *          max = "5",
      *          exactMessage = "Le code postal doit faire {{ limit }} caractères."
@@ -143,7 +143,7 @@ class Clients
      * @var string
      *
      * @ORM\Column(name="siret", type="string", length=14)
-     * @Assert\length(
+     * @Assert\Length(
      *          min = "14",
      *          max = "14",
      *          exactMessage = "Le numéro de siret doit faire {{ limit }} caractères."
@@ -155,7 +155,7 @@ class Clients
      * @var string
      *
      * @ORM\Column(name="stdTel", type="string", length=10)
-     * @Assert\length(
+     * @Assert\Length(
      *          min = "10",
      *          max = "10",
      *          exactMessage = "Le numéro de téléphone doit faire {{ limit }} caractères."
@@ -167,7 +167,7 @@ class Clients
      * @var string
      *
      * @ORM\Column(name="tel", type="string", length=10)
-     * @Assert\length(
+     * @Assert\Length(
      *          min = "10",
      *          max = "10",
      *          exactMessage = "Le numéro de téléphone doit faire {{ limit }} caractères."
@@ -179,7 +179,7 @@ class Clients
      * @var string
      *
      * @ORM\Column(name="fax", type="string", length=10)
-     * @Assert\length(
+     * @Assert\Length(
      *          min = "10",
      *          max = "10",
      *          exactMessage = "Le numéro de fax doit faire {{ limit }} caractères."
@@ -199,7 +199,6 @@ class Clients
      * @var boolean
      *
      * @ORM\Column(name="actif", type="boolean")
-     * @Assert\NotBlank()
      */
     private $actif;
 
@@ -649,38 +648,5 @@ class Clients
     public function getActif()
     {
         return $this->actif;
-    }
-
-    /**
-     * Add bons
-     *
-     * @param \elfib\MouvementBundle\Entity\Bon $bons
-     * @return Clients
-     */
-    public function addBon(\elfib\MouvementBundle\Entity\Bon $bons)
-    {
-        $this->bons[] = $bons;
-    
-        return $this;
-    }
-
-    /**
-     * Remove bons
-     *
-     * @param \elfib\MouvementBundle\Entity\Bon $bons
-     */
-    public function removeBon(\elfib\MouvementBundle\Entity\Bon $bons)
-    {
-        $this->bons->removeElement($bons);
-    }
-
-    /**
-     * Get bons
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getBons()
-    {
-        return $this->bons;
     }
 }

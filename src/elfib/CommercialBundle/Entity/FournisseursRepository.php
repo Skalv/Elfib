@@ -12,4 +12,8 @@ use Doctrine\ORM\EntityRepository;
  */
 class FournisseursRepository extends EntityRepository
 {
+  public function getAll()
+  {
+    
+  }
 }

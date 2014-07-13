@@ -1,0 +1,75 @@
+{# src/elfib/ArticleBundle/Resources/views/Client/index.html.twig #}
+
+{% extends "elfibArticleBundle::layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Mouvements
+{% endblock %}
+
+{% block body %}
+<div id="NomenclatureIndex">
+  <h3>Ajout d'un bon de commande</h3>
+  
+  <div class="clearfix"></div><hr>
+  {{ form_start(form) }}
+  {{ form_errors(form) }}
+    
+    <div class="row">
+      <div class="col-md-3">
+        {% if form_errors(form.produitFini) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.produitFini) }}
+          </div>
+        {% endif %}
+        <label>Nomenclature</label>
+        {{ form_widget(form.produitFini, {'attr': {'class': 'form-control', 
+          'placeholder': "Nomenclature"}} ) }}
+      </div>
+      <div class="col-md-3">
+        {% if form_errors(form.quantite) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.quantite) }}
+          </div>
+        {% endif %}
+        <label>Quantité</label>
+        {{ form_widget(form.quantite, {'attr': {'class': 'form-control', 
+          'placeholder': "Quantité"}} ) }}
+      </div>
+      <div class="col-md-3">
+        {% if form_errors(form.emplacementArrive) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.emplacementArrive) }}
+          </div>
+        {% endif %}
+        <label>Emplacement d'arrivé</label>
+        {{ form_widget(form.emplacementArrive, {'attr': {'class': 'form-control', 
+          'placeholder': "Emplacement d'arrivé"}} ) }}
+      </div>
+      <div class="col-md-3">
+        {% if form_errors(form.destinataire) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.destinataire) }}
+          </div>
+        {% endif %}
+        <label>Destinataire</label>
+        {{ form_widget(form.destinataire, {'attr': {'class': 'form-control', 
+          'placeholder': "Destinataire"}} ) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        {% if form_errors(form.dataExecution) %}
+          <div class="alert alert-danger">
+            {{ form_errors(form.dataExecution) }}
+          </div>
+        {% endif %}
+        <label>Date de fabrication</label>
+        {{ form_widget(form.dataExecution, {'attr': {'class': 'form-control', 
+          'placeholder': "dataExecution"}} ) }}
+      </div>
+    </div>
+
+    {{ form_rest(form)}}
+    <br>
+    <button class="btn btn-success" type="submit">Enregistrer</button>
+{% endblock %}

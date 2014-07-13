@@ -1,0 +1,26 @@
+{# src/elfib/ArticleBundle/Resources/views/Client/index.html.twig #}
+
+{% extends "elfibArticleBundle::layout.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Article
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <h4>{{ nomenclature.libelle }}</h4>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      Type : {{ nomenclature.type }}<br>
+    </div>
+    <div class="col-md-6">
+      <img src="http://elfib.dev{{nomenclature.qrcode}}" alt="Qrcode de l'article {{nomenclature.libelle}}">
+    </div>
+  </div>
+</div>
+<hr>
+
+
+{% endblock %}
